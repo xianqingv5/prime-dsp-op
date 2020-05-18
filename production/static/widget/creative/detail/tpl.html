@@ -13,9 +13,9 @@
 	<form class=row>
 		<div class=col-md-4 style=overflow:hidden;word-wrap:break-word>
 			<img id=bannerUrl src="">
-			<video class=hidden src="" controls>Your browser does not support the video tag.</video>
+			<video class=hidden controls src="">Your browser does not support the video tag.</video>
 			<p><span id=appCategoryName></span></p>
-			<span><a href=# target=_blank id=clickThroughUrl></a><span>（点击地址）</span></span>
+			<span><a href=# id=clickThroughUrl target=_blank></a><span>（点击地址）</span></span>
 			<p><span id=domain></span><span>（顶级域名）</span></p>
 		</div>
 		<div class=col-md-8>
@@ -25,23 +25,23 @@
 				  <input type=checkbox id=checkAll>全选
 				</label>
 			</div>
-			<div class="checkbox inner row">
+			<div class="row checkbox inner">
 			</div>
 			<div class=unapprove>
 				<p>（部分）未审核通过的原因：</p>
-				<textarea id=reason name=reason class=form-control rows=3 placeholder=请填写具体原因></textarea>
+				<textarea class=form-control id=reason name=reason placeholder=请填写具体原因 rows=3></textarea>
 			</div>
-			<div class="col-md-8 actions">
-				<button class="btn btn-primary actions submitAndGoNext" type=button>保存并继续</button>
-				<button class="btn btn-primary actions submitAndExit" type=button>保存并退出</button>
-				<button class="btn btn-primary cancel actions" type=button>取消</button>
+			<div class="actions col-md-8">
+				<button class="actions btn btn-primary submitAndGoNext" type=button>保存并继续</button>
+				<button class="actions btn btn-primary submitAndExit" type=button>保存并退出</button>
+				<button class="actions btn btn-primary cancel" type=button>取消</button>
 			</div>
 		</div>
-		<input name=adId type=hidden>
-		<input name=adType type=hidden>
-		<input name="" type=hidden id=banner>
-		<input name="" type=hidden id=videoU>
-		<input name="" type=hidden id=icon>
-		<input name="" type=hidden id=pic>
+		<input type=hidden name=adId>
+		<input type=hidden name=adType>
+		<input type=hidden name="" id=banner>
+		<input type=hidden name="" id=videoU>
+		<input type=hidden name="" id=icon>
+		<input type=hidden name="" id=pic>
 	
 </form></form>

@@ -7,9 +7,9 @@
 	</div>
     
     <div class="row mb20">
-        <div class="shield col-md-8 col-md-offset-4" id=shield-main>
+        <div class="col-md-8 col-md-offset-4 shield" id=shield-main>
             
-            <a href=javascript:; class="btn btn-primary" check-all>全选</a>
+            <a href=javascript:; check-all class="btn btn-primary">全选</a>
             屏蔽：
             
         </div> 
@@ -23,14 +23,14 @@
         <div class=col-md-12>
             
             <button class="btn btn-primary actions submitAndExit" type=button permission=batchApproveAd>保存并退出</button>
-            <button class="btn btn-primary cancel actions" type=button>取消</button>
+            <button class="btn btn-primary actions cancel" type=button>取消</button>
         </div>
     </div>
 
 
 </form>
 
-<script type=text/html id=campaignDetailTmp>
+<script id=campaignDetailTmp type=text/html>
     <div class="col-md-6">
         <div><strong>User ID:</strong> <%= data.accountId %></div>
         <div class="odd"><strong>Campaign ID:</strong> <%= data.campaignId %></div>
@@ -58,12 +58,14 @@
             <input type="checkbox" name="runOnAlert" id="runOnAlert" <%= !!data.runOnAlert ? "checked" : "" %> /> <label for="runOnAlert">忽略TMT报警</label>
             <br />
             <input type="checkbox" name="geoRunOnAlert" id="geoRunOnAlert" <%= !!data.geoRunOnAlert ? "checked" : "" %> /> <label for="geoRunOnAlert">忽略Geoedge报警</label>
+            <br />
+            <input type="checkbox" name="inmobiRunOnAlert" id="inmobiRunOnAlert" <%= !!data.inmobiRunOnAlert ? "checked" : "" %> /> <label for="inmobiRunOnAlert">忽略Inmobi报警</label>
         </div>
     </div>
 </script>
 
 
-<script type=text/html id=adListTmp>
+<script id=adListTmp type=text/html>
 <% adList.forEach(function(ad, i) { %>
     <div class=" ad-container col-md-12" adId="<%= ad.adId %>" >
         <span class="ad-index"><%= i + 1 %></span>
@@ -97,6 +99,7 @@
             <strong>Approval Status:</strong><%=# handleStatus(ad.approvalStatus) %><br />
             <strong>TMT Status:</strong><%=# tmt(ad.tmtStatus) %><br />
             <strong>Geoedge Status:</strong><%=# tmt(ad.geoStatus) %><br />
+            <strong>Inmobi Status:</strong><%=# tmt(ad.inmobiStatus) %><br />
             
         </div>
         <div class="col-md-8">

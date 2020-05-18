@@ -1,13 +1,13 @@
-<div class="row actions mb20">
+<div class="actions mb20 row">
 	<div class="col-md-6 mb20">
-		<button class="btn btn-primary actions" type=button permission=queryUserBalance,queryAccountIdName,recharge id=manualCharge>人工充值</button>
-		<button class="btn btn-primary actions" type=button permission=queryUserBalance,queryAccountIdName,refund id=manualRefund>人工退款</button>
-		<button class="btn btn-primary actions" type=button permission=financeApprovel,queryNextPendingChargeInfo,queryChargeInfo id=chargeCheck>充值审核</button>
-		<button class="btn btn-primary actions" type=button permission=financeApprovel,queryNextPendingChargeInfo,queryChargeInfo id=refundCheck>退款审核</button>
+		<button class="actions btn btn-primary" type=button id=manualCharge permission=queryUserBalance,queryAccountIdName,recharge>人工充值</button>
+		<button class="actions btn btn-primary" type=button id=manualRefund permission=queryUserBalance,queryAccountIdName,refund>人工退款</button>
+		<button class="actions btn btn-primary" type=button id=chargeCheck permission=financeApprovel,queryNextPendingChargeInfo,queryChargeInfo>充值审核</button>
+		<button class="actions btn btn-primary" type=button id=refundCheck permission=financeApprovel,queryNextPendingChargeInfo,queryChargeInfo>退款审核</button>
 	</div>
-	<form class="col-md-6 text-right pull-right mb20">
+	<form class="col-md-6 mb20 pull-right text-right">
 		<div class=form-inline>
-			<label for="approvalStatus pull-left" class=control-label>流水状态</label>
+			<label class=control-label for="approvalStatus pull-left">流水状态</label>
 			<div class=col-md-3>
 				<select class=form-control id=approvalStatus name=approvalStatus style=width:100%>
 					<option value=1>待确认</option>
@@ -16,20 +16,20 @@
 				</select>
 			</div>
 			<div>
-				<input name=startTime type=text class="col-md-3 yeah-dtpicker form_datetime" id=start placeholder=From data-date-format=yyyy-mm-dd data-date-autoclose=true data-date-today-btn=false data-min-view=2 data-picker-position=top-left readonly>
+				<input class="col-md-3 yeah-dtpicker form_datetime" name=startTime placeholder=From type=text data-date-autoclose=true data-date-format=yyyy-mm-dd data-date-today-btn=false data-min-view=2 data-picker-position=top-left id=start readonly>
 				<div class=pull-left style=display:inline-block;line-height:34px><span>-</span></div>
-				<input name=endTime type=text class="col-md-3 yeah-dtpicker form_date" id=end placeholder=To data-date-format=yyyy-mm-dd data-date-autoclose=true data-date-today-btn=false data-min-view=2 data-picker-position=top-left readonly>
-			    <a href=# class=col-md-1><span class="glyphicon glyphicon-search" id=search></span></a>
+				<input class="col-md-3 yeah-dtpicker form_date" name=endTime placeholder=To type=text data-date-autoclose=true data-date-format=yyyy-mm-dd data-date-today-btn=false data-min-view=2 data-picker-position=top-left id=end readonly>
+			    <a class=col-md-1 href=#><span class="glyphicon glyphicon-search" id=search></span></a>
 			</div>
 			<div class=hidden>
-		        <input name=limit class=hidden value=20>
+		        <input class=hidden name=limit value=20>
 		    </div>
 		</div>
 	</form>
-	<form class="form-inline col-md-6" style=width:100%>
+	<form class="col-md-6 form-inline" style=width:100%>
         <div class=form-group>
-            <input name=findUserId type=text class="form-control filter" placeholder=输入ID，回车查询 data-key=accountId>
-            <input name=findUserEmail type=text class="form-control filter" placeholder=输入Email，回车查询 data-key=accountEmail>
+            <input class="form-control filter" name=findUserId placeholder=输入ID，回车查询 type=text data-key=accountId>
+            <input class="form-control filter" name=findUserEmail placeholder=输入Email，回车查询 type=text data-key=accountEmail>
             <select class=form-control id=chargeType name=chargeType style=min-width:100px>
                 <option value="">全部收款类型</option>
                 <option value=1>paypal</option>
@@ -39,11 +39,11 @@
                 <option value=5>赔款</option>
             </select>
         </div>
-        <a href=javascript:; id=show-all class="btn btn-default">重置</a>
+        <a class="btn btn-default" href=javascript:; id=show-all>重置</a>
     </form>
 </div>
 <div class=page></div>
-<table id=finance-list class="table table-hover">
+<table class="table table-hover" id=finance-list>
 	<thead>
 		<th>流水编号</th>
 		<th>时间</th>
@@ -62,7 +62,7 @@
 	</tbody>
 </table>
 <div class=page></div>
-<script type=text/html id=financeList>
+<script id=financeList type=text/html>
 	<% for (var i = 0, len = data.length; i < len; i++) {%>
 		<tr id="<%= data[i].chargeId %>" type="<%= data[i].type < 7 ? 'chargeCheck' : 'refundCheck' %>" action="view">
 			<td class="text-center"><%= data[i].chargeId %></td>
@@ -89,11 +89,11 @@
 		</tr>
 	<% } %>
 </script>
-<div class="modal fade" id=imgModal tabindex=-1 role=dialog aria-labelledby=imgModalLabel aria-hidden=true>
+<div class="fade modal" aria-hidden=true aria-labelledby=imgModalLabel id=imgModal role=dialog tabindex=-1>
     <div class=modal-dialog style=width:1000px>
         <div class=modal-content>
             <div class=modal-header>
-                <button class=close type=button data-dismiss=modal aria-hidden=true>×</button>
+                <button class=close type=button aria-hidden=true data-dismiss=modal>×</button>
             </div>
             <div class=modal-body>
                 <div id=img_show><img src="" style=width:100%></div>

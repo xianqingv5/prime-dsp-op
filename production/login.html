@@ -1,28 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang=en>
 <head>
     <title>DSP - 运营系统</title>
     <meta charset=UTF-8>
-    <meta name=viewport content="width=device-width,initial-scale=1">
-	<link rel=stylesheet href=static/css/bootstrap.css>
-    <link rel=stylesheet href=static/css/login.css>
+    <meta content="width=device-width,initial-scale=1" name=viewport>
+	<link href=static/css/bootstrap.css rel=stylesheet>
+    <link href=static/css/login.css rel=stylesheet>
 </head>
 <body>
     <div id=loginbox>            
-        <form id=loginform class=form-vertical action=#>
+        <form action=# class=form-vertical id=loginform>
 			<div class="control-group normal_text"><h3><img src=static/images/logo.png>运营中心</h3></div>
             <div id=content>
                 <div class=control-group>
                     <div class=controls>
                         <div class=main_input_box>
-                            <span class="add-on bg_lg"><span class="glyphicon glyphicon-user" aria-hidden=true></span></span><input id=userName class=form-control type=text name=email placeholder=Username value="">
+                            <span class="add-on bg_lg"><span class="glyphicon glyphicon-user" aria-hidden=true></span></span><input id=userName name=email placeholder=Username type=text value="" class=form-control>
                         </div>
                     </div>
                 </div>
                 <div class=control-group>
                     <div class=controls>
                         <div class=main_input_box>
-                            <span class="add-on bg_ly"><span class="glyphicon glyphicon-lock" aria-hidden=true></span></span><input id=userPass type=password name=password placeholder=Password value="">
+                            <span class="add-on bg_ly"><span class="glyphicon glyphicon-lock" aria-hidden=true></span></span><input id=userPass name=password placeholder=Password type=password value="">
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                 <div class=control-group>
                     <div class=controls>
                         <div class=main_input_box>
-                            <button type=submit class="btn btn-success">登录</button>
+                            <button class="btn btn-success" type=submit>登录</button>
                         </div>
                     </div>
                 </div>

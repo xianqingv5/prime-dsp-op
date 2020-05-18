@@ -4,13 +4,13 @@
     <div>
         <div class=form-group>
             
-            <input placeholder=输入ID，回车查询 class="form-control filter" data-key=accountId type=text>
-            <input placeholder=输入Email，回车查询 class="form-control filter" data-key=accountEmail type=text>
+            <input class="form-control filter" data-key=accountId placeholder=输入ID，回车查询 type=text>
+            <input class="form-control filter" data-key=accountEmail placeholder=输入Email，回车查询 type=text>
             <select class=form-control id=am-selector name=am-selector style=min-width:100px>
                 <option value="">All AM</option>
             </select>
         </div>
-        <a href=javascript:; id=show-all class="btn btn-default">重置</a>
+        <a class="btn btn-default" href=javascript:; id=show-all>重置</a>
         <div id=filter-result>
             <span>无结果</span>
         </div>
@@ -23,7 +23,7 @@
     <div class=page></div>
 
     
-    <div class="modal fade" id=myModal tabindex=-1 role=dialog aria-labelledby=myModalLabel>
+    <div class="fade modal" role=dialog aria-labelledby=myModalLabel id=myModal tabindex=-1>
         <div class=modal-dialog role=document>
             <div class=modal-content>
                 <div class=modal-body>
@@ -33,7 +33,7 @@
     </div>
 </div>
 
-<script type=text/html id=filterResult>
+<script id=filterResult type=text/html>
     <% customers.forEach(customer => { %>
         <a href="javascript:;" account-id="<%= customer.accountId %>">
             <%= customer.accountEmail %>
@@ -42,7 +42,7 @@
         <% }) %>
 </script>
 
-<script type=text/html id=customerList>
+<script id=customerList type=text/html>
 
     <table class="table table-striped-manu table-hover" id="customer-data">
         <thead>
@@ -97,7 +97,7 @@
 </script>
 
 
-<script type=text/html id=userHourlyReport>
+<script id=userHourlyReport type=text/html>
     <div id="hourly-report-top">
         <span class="email"><%= tmpData.email %></span>
         <span class="date"></span>
@@ -112,7 +112,7 @@
 </script>
 
 
-<script type=text/html id=campaignList>
+<script id=campaignList type=text/html>
 
     <% if(!data.length) {%>
         <td colspan="11">No Data</td>
@@ -212,7 +212,7 @@
 </script>
 
 
-<script type=text/html id=campaignReport>
+<script id=campaignReport type=text/html>
     <div class="form-inline pull-right mb20">
         <button class="btn <%= tmpData.days == -2 ? 'btn-primary' : 'btn-default' %>" top5="-2">前日TOP10</button>
         <button class="btn <%= tmpData.days == -1 ? 'btn-primary' : 'btn-default' %>" top5="-1">昨日TOP10</button>

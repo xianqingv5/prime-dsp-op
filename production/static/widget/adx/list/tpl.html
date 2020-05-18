@@ -2,35 +2,35 @@
     <div class=form-inline> 
         <div class=form-group>
             
-            <input name=id type=text class="form-control filter" placeholder=ID，回车查询 data-key=id> 
-            <input name=name type=text class="form-control filter" placeholder="Adx Name，回车查询" data-key=name> 
+            <input name=id type=text class="filter form-control" data-key=id placeholder=ID，回车查询> 
+            <input name=name type=text class="filter form-control" data-key=name placeholder="Adx Name，回车查询"> 
         </div>  
-        <button class="btn btn-primary" type=submit id=submit>查询</button>  
+        <button class="btn btn-primary" id=submit type=submit>查询</button>  
         <button class="btn btn-default" id=reset>重置</button>
     </div>
     <div class=extend-param>
         <div>
-            <label for=adxUsageType class=title>使用类型</label>
-            <label class="status radio-inline">
+            <label class=title for=adxUsageType>使用类型</label>
+            <label class="radio-inline status">
                 <input name=adxUsageType type=radio value=1 checked>普通
             </label>
-            <label class="status radio-inline">
+            <label class="radio-inline status">
                 <input name=adxUsageType type=radio value=2>租用
             </label>
         </div>
 
         <div>
-            <label for=type class=title>类型</label>
-            <label class="status radio-inline">
+            <label class=title for=type>类型</label>
+            <label class="radio-inline status">
                 <input name=type type=radio value=1>Normal
             </label>
-            <label class="status radio-inline">
+            <label class="radio-inline status">
                 <input name=type type=radio value=2>Prime
             </label>
-            <label class="status radio-inline">
+            <label class="radio-inline status">
                 <input name=type type=radio value=3>Pop
             </label>
-            <label class="status radio-inline">
+            <label class="radio-inline status">
                 <input name=type type=radio value=4>Video
             </label>
             
@@ -39,41 +39,41 @@
         
 
         <div>
-            <label for=isSupportHtml class=title>支持HTML</label>
-            <label class="status radio-inline">
+            <label class=title for=isSupportHtml>支持HTML</label>
+            <label class="radio-inline status">
                 <input name=isSupportHtml type=radio value=1>Yes
             </label>
-            <label class="status radio-inline">
+            <label class="radio-inline status">
                 <input name=isSupportHtml type=radio value=0>No
             </label>
         </div>
 
         <div>
-            <label for=isSupportVideo class=title>支持Video</label>
-            <label class="status radio-inline">
+            <label class=title for=isSupportVideo>支持Video</label>
+            <label class="radio-inline status">
                 <input name=isSupportVideo type=radio value=1>Yes
             </label>
-            <label class="status radio-inline">
+            <label class="radio-inline status">
                 <input name=isSupportVideo type=radio value=0>No
             </label>
         </div>
 
         <div>
-            <label for=status class=title>状态</label>
-            <label class="status radio-inline">
+            <label class=title for=status>状态</label>
+            <label class="radio-inline status">
                 <input name=status type=radio value=1 checked>开启
             </label>
-            <label class="status radio-inline">
+            <label class="radio-inline status">
                 <input name=status type=radio value=2>关闭
             </label>
         </div>
     </div>
     <div class=hidden>
-        <input name=limit class=hidden value=20>
+        <input name=limit value=20 class=hidden>
     </div>
 </form>
 
-<table class="table table-striped table-hover">
+<table class="table table-hover table-striped">
 	<thead>
 		<th>ID</th>
         <th>Name</th>
@@ -94,7 +94,7 @@
 </table>
 <div class=page></div>
 
-<script type=text/html id=materialsList>
+<script id=materialsList type=text/html>
 
     <% if(loading) { %>
         <tr><td  class="text-center" colspan="13">Loading...</td></tr>

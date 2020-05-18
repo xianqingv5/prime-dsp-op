@@ -3,26 +3,26 @@
 
     <div class=mb20 style="">
         <div class=form-group>
-            <div class=btn-group id=approval-status data-toggle=buttons>
+            <div class=btn-group data-toggle=buttons id=approval-status>
                 <label class="btn btn-primary">
-                    <input name=approvalStatus type=radio value="">全部状态
+                    <input type=radio name=approvalStatus value="">全部状态
                 </label>
                 <label class="btn btn-primary active">
-                    <input name=approvalStatus type=radio value=1 checked>审核中
+                    <input type=radio name=approvalStatus value=1 checked>审核中
                 </label>
                 <label class="btn btn-primary">
-                    <input name=approvalStatus type=radio value=2>通过
+                    <input type=radio name=approvalStatus value=2>通过
                 </label>
                 <label class="btn btn-primary">
-                    <input name=approvalStatus type=radio value=3>未通过
+                    <input type=radio name=approvalStatus value=3>未通过
                 </label>
                 <label class="btn btn-primary">
-                    <input name=approvalStatus type=radio value=4>部分通过
+                    <input type=radio name=approvalStatus value=4>部分通过
                 </label>
             </div>
 
             <div class=form-group>
-                <input name=status type=checkbox value=1,2,3 id=show-closed> <label for=show-closed class="">显示已删除 Campaign</label>
+                <input type=checkbox name=status value=1,2,3 id=show-closed> <label class="" for=show-closed>显示已删除 Campaign</label>
             </div>
         </div>
     </div>
@@ -39,9 +39,9 @@
             <option value=creativeId>Creative ID</option>
         </select>
         <div class="form-group has-success">
-            <input type=text class=form-control id=inputSuccess4 placeholder="Press enter to search" aria-describedby=inputSuccess4Status>
+            <input type=text id=inputSuccess4 aria-describedby=inputSuccess4Status class=form-control placeholder="Press enter to search">
         </div>
-        <button class="btn btn-primary" type=submit id=search>查询</button>
+        <button class="btn btn-primary" id=search type=submit>查询</button>
         <button class="btn btn-default" id=reset>重置</button>
 
         
@@ -52,7 +52,7 @@
 
 
     
-<table class="table table-striped table-hover">
+<table class="table table-hover table-striped">
 	<thead>
 		<th>推广ID</th>
 		<th>推广名称</th>
@@ -62,6 +62,7 @@
         <th>Creative Count</th>
         <th>TMT</th>
         <th>Geoedge</th>
+        <th>Inmobi</th>
         <th>审核</th>
 		<th>操作</th>
 	</thead>
@@ -70,7 +71,7 @@
 </table>
 <div class=page></div>
 </form>
-<script type=text/html id=materialsList>
+<script id=materialsList type=text/html>
 	<% for (var i = 0, len = data.length; i < len; i++) {%>
 		<tr id="<%= data[i].campaignId %>">
             <td class="text-center"><%= data[i].campaignId %></td>
@@ -80,6 +81,7 @@
             <td class="text-center"><%= data[i].adCount %></td>
             <td class="text-center"><%=# alertIcon(data[i].tmtStatus) %> <%=# runOnAlert(data[i].runOnAlert) %></td>
             <td class="text-center"><%=# alertIcon(data[i].geoStatus) %> <%=# runOnAlert(data[i].geoRunOnAlert) %></td>
+            <td class="text-center"><%=# alertIcon(data[i].inmobiStatus) %> <%=# runOnAlert(data[i].inmobiRunOnAlert) %></td>
             <td class="approval-status text-center">
                 <%=# handleStatus(data[i].approvalStatus) %>
             </td>

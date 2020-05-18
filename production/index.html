@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang=en>
 <head>
 <title>DSP- 运营系统</title>
@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name=viewport>
 <link href=static/css/bootstrap.css rel=stylesheet>
 <link href=static/css/select2.min.css rel=stylesheet>
-<link href=static/css/base.css?20180712163301 rel=stylesheet>
+<link href=static/css/base.css?20200518191234 rel=stylesheet>
 <link href=static/libs/tableexport/css/tableexport.min.css rel=stylesheet>
 <link href="" rel=stylesheet id=customStyle>
 <!--[if lt IE 9]>
@@ -16,7 +16,7 @@
 <![endif]-->
 </head>
 <body>
-<meta content=20180712163301 name=hash>
+<meta content=20200518191234 name=hash>
 
     <header class=navbar id=main-navbar>
     </header>
@@ -51,12 +51,12 @@
     <script src=static/libs/bootstrap/dist/js/bootstrap.min.js></script>
     <link href=https://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css rel=stylesheet>
     <script src=https://cdn.bootcss.com/numeral.js/2.0.6/numeral.min.js></script>
-    <script src=static/script/common.js?20180712163301></script>
+    <script src=static/script/common.js?20200518191234></script>
     <script src=static/libs/js/xlsx.core.min.js></script>
     <script src=static/libs/js/blob.js></script>
     <script src=static/libs/js/FileSaver.min.js></script>
     <script src=static/libs/tableexport/js/tableexport.js></script>
-    <script>$(document).ready(function(){var t={checkLogin:function(){localStorage.getItem("token")||(window.location.href="./login.html")},getCurrentTime:function(){var t=new Date,e=t.getFullYear(),o=parseInt(t.getMonth()+1)>9?parseInt(t.getMonth()+1):"0"+parseInt(t.getMonth()+1),n=t.getDate()>9?t.getDate():"0"+t.getDate(),a=t.getMinutes()>9?t.getMinutes():"0"+t.getMinutes();return"(UTC +8) "+e+"-"+o+"-"+n+" "+["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][t.getDay()]+" "+t.getHours()+" : "+a},bindEvent:function(){$("#main_logout").unbind().on("click",function(t){t.preventDefault();common.ajaxRequest("logout",{},function(t){0==t.status&&(window.location="./login.html")})})},handleInit:function(){var e=common.urlTools.getUrlParam("goto"),o=common.urlTools.getUrlParam("mold");$("#main-navbar").load("header.html",function(){var n=$("#"+e).text()||"首页";$("#date").text(t.getCurrentTime()),document.title="DSP - 运营系统["+("1"==_location?"国内":"国外")+"] "+n,t.getAuthority(),t.bindEvent(),common.urlTools.urlRoute(e,o)})},getAuthority:function(){var t=localStorage.getItem("roleId"),e=localStorage.getItem("email"),o=localStorage.getItem("approverId"),n=localStorage.getItem("name"),a=localStorage.getItem("permissions");$("#userInfomation").text(e).attr({roleId:t,approverId:o,name:n}),common.set({roleId:t,email:e,approverId:o,name:n,permissions:a})},init:function(){t.checkLogin(),t.handleInit()}};t.init()})</script>
+    <script>$(document).ready(function(){var n={checkLogin:function(){localStorage.getItem("token")||(window.location.href="./login.html")},getCurrentTime:function(){var t=new Date,e=t.getFullYear(),o=9<parseInt(t.getMonth()+1)?parseInt(t.getMonth()+1):"0"+parseInt(t.getMonth()+1),n=9<t.getDate()?t.getDate():"0"+t.getDate(),a=9<t.getMinutes()?t.getMinutes():"0"+t.getMinutes();return"(UTC +8) "+e+"-"+o+"-"+n+" "+["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][t.getDay()]+" "+t.getHours()+" : "+a},bindEvent:function(){$("#main_logout").unbind().on("click",function(t){t.preventDefault();common.ajaxRequest("logout",{},function(t){0==t.status&&(window.location="./login.html")})})},handleInit:function(){var e=common.urlTools.getUrlParam("goto"),o=common.urlTools.getUrlParam("mold");$("#main-navbar").load("header.html",function(){var t=$("#"+e).text()||"首页";$("#date").text(n.getCurrentTime()),document.title="DSP - 运营系统["+("1"==_location?"国内":"国外")+"] "+t,n.getAuthority(),n.bindEvent(),common.urlTools.urlRoute(e,o)})},getAuthority:function(){var t=localStorage.getItem("roleId"),e=localStorage.getItem("email"),o=localStorage.getItem("approverId"),n=localStorage.getItem("name"),a=localStorage.getItem("permissions");$("#userInfomation").text(e).attr({roleId:t,approverId:o,name:n}),common.set({roleId:t,email:e,approverId:o,name:n,permissions:a})},init:function(){n.checkLogin(),n.handleInit()}};n.init()})</script>
 
     <script type=text/html id=tableListPage>
         <div class="pagerContainer">

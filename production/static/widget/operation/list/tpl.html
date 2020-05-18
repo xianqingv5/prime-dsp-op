@@ -1,27 +1,27 @@
-<form class="row actions mb20">
+<form class="actions mb20 row">
 	<div class=col-md-2>
-		<button class="btn btn-primary actions" type=button permission=createOperationAccount id=createAccount>创建账户</button>
+		<button class="actions btn btn-primary" id=createAccount permission=createOperationAccount type=button>创建账户</button>
     </div>
     <div class=col-md-10>
 		<div class="form-inline pull-right">
-			<label for=accountId class=control-label></label>
+			<label class=control-label for=accountId></label>
 	      	<select class=form-control id=accountId name="">
-				<option value="" selected>-账户ID-</option>
+				<option selected value="">-账户ID-</option>
 	      	</select>
 	      	
 			<div class="form-group has-success">
-				<input name=accountId type=text class=form-control id=inputSuccess4 aria-describedby=inputSuccess4Status>
+				<input class=form-control name=accountId aria-describedby=inputSuccess4Status id=inputSuccess4 type=text>
 				<a href=#><span class="glyphicon glyphicon-search" id=search></span></a>
 			</div>
 			<div class=hidden>
-		        <input name=limit class=hidden value=20>
+		        <input class=hidden name=limit value=20>
 		    </div>
 		</div>
     </div>
 </form>
 
 <div class=page></div>
-<table class="table table-striped table-hover">
+<table class="table table-hover table-striped">
 	<thead>
 		<th>账户ID</th>
 		<th>账户邮箱</th>
@@ -36,7 +36,7 @@
 </table>
 <div class=page></div>
 
-<script type=text/html id=accountList>
+<script id=accountList type=text/html>
 	<% for (var i = 0, len = data.length; i < len; i++) {%>
 		<tr>
 			<td class="text-center"><%= data[i].accountId %></td>

@@ -1,12 +1,12 @@
 
 <form id=form-container>
-    <div class="form-inline mb20 clearfix"> 
+    <div class="form-inline clearfix mb20"> 
         <div class="form-group pull-right">
             
             <select class=form-control id=adx-selector name=adx style=min-width:100px>
                 <option value=0>All Adx</option>
             </select>
-            <input name=time type=text class="form-control filter" id=datetime daterange>
+            <input class="form-control filter" name=time daterange id=datetime type=text>
         </div>
         
         
@@ -14,21 +14,21 @@
     </div>
     
     <div class=hidden>
-        <input name=limit class=hidden value=20>
+        <input class=hidden name=limit value=20>
     </div>
 </form>
 
-<table class="table table-striped table-hover" id=adx-report>
+<table class="table table-hover table-striped" id=adx-report>
 	<thead id=table-header>
         
 	</thead>
 	<tbody class=row id=list>
 	</tbody>
 </table>
-<div class="page form-inline"></div>
+<div class="form-inline page"></div>
 
 
-<script type=text/html id=thead-platform>
+<script id=thead-platform type=text/html>
     <tr>
         <th>ID</th>
         <th>Platform Name</th>
@@ -48,7 +48,7 @@
         <th>Revenue</th>
     </tr>
 </script>
-<script type=text/html id=thead-platform-date>
+<script id=thead-platform-date type=text/html>
     <tr>
         <th>Date</th>
         <th>Bid</th>
@@ -69,7 +69,7 @@
     </tr>
 </script>
 
-<script type=text/html id=materialsList>
+<script id=materialsList type=text/html>
 
     <% if(loading) { %>
         <tr><td  class="text-center" colspan="16">Loading...</td></tr>
@@ -109,7 +109,7 @@
 	<% }} %>
 </script>
 
-<script type=text/html id=campaignList>
+<script id=campaignList type=text/html>
     <td colspan="16">
         <table class="table table-striped table-hover">
             <thead>

@@ -14,9 +14,9 @@
       	</select>
     </div>
 	<div>
-		<input name=startTime type=text class="col-md-2 yeah-dtpicker form_datetime" id=start placeholder=From data-date-format=yyyy-mm-dd data-date-autoclose=true data-date-today-btn=false data-min-view=2 data-picker-position=top-left readonly>
+		<input class="col-md-2 yeah-dtpicker form_datetime" id=start type=text data-date-autoclose=true data-date-format=yyyy-mm-dd data-date-today-btn=false data-min-view=2 data-picker-position=top-left name=startTime placeholder=From readonly>
 		<div class=pull-left style=display:inline-block;line-height:34px><span>-</span></div>
-		<input name=endTime type=text class="col-md-2 yeah-dtpicker form_date" id=end placeholder=To data-date-format=yyyy-mm-dd data-date-autoclose=true data-date-today-btn=false data-min-view=2 data-picker-position=top-left readonly>
+		<input class="col-md-2 yeah-dtpicker form_date" id=end type=text data-date-autoclose=true data-date-format=yyyy-mm-dd data-date-today-btn=false data-min-view=2 data-picker-position=top-left name=endTime placeholder=To readonly>
 	</div>
     <div class=pull-right>
 		<div class=form-inline>
@@ -25,16 +25,16 @@
 				<option value=accountId>所属账户ID</option>
 	      	</select>
 			<div class="form-group has-success">
-				<input type=text class=form-control id=inputSuccess4 aria-describedby=inputSuccess4Status>
+				<input class=form-control id=inputSuccess4 type=text aria-describedby=inputSuccess4Status>
 				<a href=#><span class="glyphicon glyphicon-search" id=search></span></a>
 			</div>
 		</div>
     </div>
     <div class=hidden>
-		<input type=text id=adIds>
+		<input id=adIds type=text>
     </div>
 	<div class=hidden>
-        <input name=limit class=hidden value=20>
+        <input class=hidden name=limit value=20>
     </div>
 </form>
 <div class=page></div>
@@ -58,7 +58,7 @@
 </table>
 <div class=page></div>
 
-<script type=text/html id=materialsList>
+<script id=materialsList type=text/html>
 	<% for (var i = 0, len = data.length, unapprovedAdIds = []; i < len; i++) {%>
 		<% var unapproAdIds = countUnapprovedAdIds(data[i].adId, data[i].approvalStatus, unapprovedAdIds)%>
 	<% } %>

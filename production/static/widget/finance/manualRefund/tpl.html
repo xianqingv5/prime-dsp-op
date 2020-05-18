@@ -3,42 +3,42 @@
 	<li class=active>人工退款</li>
 </ol>
 <div class=box>
-	<div class=box-header>操作人:<span id=approver class=normal></span>
+	<div class=box-header>操作人:<span class=normal id=approver></span>
 	</div>
 	<div class=row>
 		<form class=form-horizontal>
 			<div class=form-group>
-				<label for=accountId class="col-sm-2 control-label required">选择账户</label>
+				<label class="col-sm-2 control-label required" for=accountId>选择账户</label>
 				<div class=col-sm-7>
 					<select class=form-control id=accountId name=accountId>
 					</select>
 					
 				</div>
-				<div class="col-sm-3 note hidden" id=balance></div>
+				<div class="col-sm-3 hidden note" id=balance></div>
 			</div>
 			<div class=form-group>
-				<label for=payment class="col-sm-2 control-label required">退款金额</label>
+				<label class="col-sm-2 control-label required" for=payment>退款金额</label>
 				<div class="col-sm-7 input-group">
-				    <div class="input-group-addon currency">$</div>
-					<input name=payment type=number class=form-control id=payment placeholder="">
+				    <div class="currency input-group-addon">$</div>
+					<input class=form-control id=payment name=payment placeholder="" type=number>
 				</div>
 			</div>
 			<div class=form-group>
-				<label for="paymentCheck " class="col-sm-2 control-label required">确认退款金额</label>
+				<label class="col-sm-2 control-label required" for="paymentCheck ">确认退款金额</label>
 				<div class="col-sm-7 input-group">
-				    <div class="input-group-addon currency">$</div>
-					<input name="" type=number class=form-control id=paymentCheck placeholder="">
+				    <div class="currency input-group-addon">$</div>
+					<input class=form-control id=paymentCheck name="" placeholder="" type=number>
 				</div>
 			</div>
 			<div class=form-group>
-				<label for=commission class="col-sm-2 control-label required">退款手续费</label>
+				<label class="col-sm-2 control-label required" for=commission>退款手续费</label>
 				<div class="col-sm-7 input-group">
-				    <div class="input-group-addon currency">$</div>
-					<input name=commission type=number class=form-control id=commission placeholder="">
+				    <div class="currency input-group-addon">$</div>
+					<input class=form-control id=commission name=commission placeholder="" type=number>
 				</div>
 			</div>
 			<div class=form-group>
-				<label for=charge_type class="col-sm-2 control-label required">退款方式</label>
+				<label class="col-sm-2 control-label required" for=charge_type>退款方式</label>
 				<div class=col-sm-7>
 					<select class="form-control col-md-5" id=charge_type name=chargeType>
 						<option value="" selected>-请选择退款方式-</option>
@@ -47,10 +47,10 @@
 						<option value=2>银行电汇</option>
 					</select>
 				</div>
-				<div class="col-sm-3 note hidden" id=amount></div>
+				<div class="col-sm-3 hidden note" id=amount></div>
 			</div>
 			<div class=form-group>
-				<label for="" class="col-sm-2 control-label"></label>
+				<label class="col-sm-2 control-label" for=""></label>
 				<div class=col-sm-7>
 					<button class="btn btn-primary confirm" type=submit>保存</button>
 					<button class="btn btn-primary cancel" type=submit>取消</button>
@@ -60,6 +60,6 @@
 	</div>
 </div>
 
-<script type=text/html id=currencyTmp>
+<script id=currencyTmp type=text/html>
 	<%= currency %>
 </script>
