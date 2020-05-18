@@ -1,0 +1,25 @@
+.status ,
+.htmlRight  {
+
+    width:  150px;
+}
+button.cancel{
+	/*margin-left: 100px;*/
+}
+.form-group input.form-control{
+	width: 42%;
+}
+
+#form-container .confirm {
+    /*width: 100px;*/
+}
+.contact {
+    width: 48%;
+    display: inline-block;
+}
+label.block {
+    display: block;
+}
+[radio] {
+    margin-left: 5px;
+}

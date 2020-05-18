@@ -1,0 +1,14 @@
+.status + .status,
+button.cancel{
+	margin-left: 100px;
+}
+.form-group{
+	width: 42%;
+}
+.contact {
+    width: 48%;
+    display: inline-block;
+}
+label.block {
+    display: block;
+}

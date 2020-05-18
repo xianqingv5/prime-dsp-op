@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DSP - 运营系统</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="static/css/bootstrap.css" />
+    <link rel="stylesheet" href="static/css/login.css" />
+</head>
+<body>
+    <div id="loginbox">            
+        <form id="loginform" class="form-vertical" action="#">
+			<div class="control-group normal_text"><h3><img src="static/images/logo.png">运营中心</h3></div>
+            <div id="content">
+                <div class="control-group">
+                    <div class="controls">
+                        <div class="main_input_box">
+                            <span class="add-on bg_lg"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span><input id="userName" class="form-control" type="text" name="email" placeholder="Username" value=""/>
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <div class="main_input_box">
+                            <span class="add-on bg_ly"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span><input id="userPass" type="password" name="password" placeholder="Password" value=""/>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="control-group">
+                    <div class="controls">
+                        <div class="main_input_box">
+                            <input type="text" class="form-control" name="authCode" id="verification_code"/>
+                            <img id="verication_img" style="-webkit-user-select: none">
+                        </div>
+                    </div>
+                </div> -->
+                <div class="control-group">
+                    <div class="controls">
+                        <div class="main_input_box">
+                            <button type="submit" class="btn btn-success">登录</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+      <script src="static/libs/jquery/dist/jquery.min.js"></script>
+      <script src="https://cdn.bootcss.com/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdn.bootcss.com/moment-timezone/0.5.13/moment-timezone.min.js"></script>
+    <script src="static/script/common.js"></script>
+    <script type="text/javascript">
+        var login = {
+            submit:function(){
+                var userName = $("#userName").val();
+                var userPass = $("#userPass").val();
+                // var authCode = $("#verification_code").val();
+                if(userName == null || userName == ""){
+                    common.msg.new_msg("error","用户名不能为空");
+                    return;
+                }
+                if(userPass == null || userPass == ""){
+                    alert("密码不能为空");
+                    return;
+                }
+                // if(authCode == null || authCode == ""){
+                //     common.msgs.new_msg("error","验证码不能为空");
+                //     return;
+                // }
+                var data = $("form").serialize();
+                common.ajaxRequest('login', data, function(result) {
+                    // console.log(result)
+                    if (result.status == 0) {
+                        // role对照表  
+                        // 1   customer   
+                        // 2   admin  
+                        // 3   pm_creative_approval   
+                        // 4   pm_finance_operator 
+                        // 5   pm_finance_approval
+                        // 6   AM 
+                        // 7   Super-AM   
+                        // 8   unknow
+                        // 9   finance-analysis
+                        var roleId = result.data &&　result.data.role;
+                        var token = result.data &&　result.data.token;
+                        var email = result.data &&　result.data.email;
+                        var approverId = result.data &&　result.data.id;
+                        var name = result.data &&　result.data.name;
+                        var permissions = result.data && Object.keys(result.data.permissions).reduce((array, key) => {
+                            try{array.push(result.data.permissions[key].content)}catch(e){}
+                            result.data.permissions[key]
+                            return array
+                        }, []);
+                        console.log(permissions, result.data.permissions)
+                        
+                        localStorage.setItem("roleId", roleId);
+                        localStorage.setItem("token", token);
+                        localStorage.setItem("email", email);
+                        localStorage.setItem("approverId", approverId);
+                        localStorage.setItem("name", name);
+                        localStorage.setItem("permissions", permissions);
+                        common.getAuthorityAndSetLocation(roleId);
+                    }
+                })
+            },
+            bindEvents:function(){
+                $("form").unbind().submit(function(e) {
+                    e.preventDefault();
+                    login.submit();
+                })
+                var src = APIS.captcha.baseURL;
+                $('#verication_img').attr('src', src).click(function() {
+                    $(this).attr('src', src + '?_=' + Math.random());
+                });
+            },
+            init:function(){
+                login.bindEvents();
+                $('#verication_img').trigger("click");
+            }
+        }
+        $(document).ready(function () {
+            login.init();
+            document.title = document.title + '[' + (_location == '1' ? '国内' : '国外') + ']';
+        })
+    </script>
+</body>
+</html>

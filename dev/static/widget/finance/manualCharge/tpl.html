@@ -1,0 +1,106 @@
+
+<ol class="breadcrumb">
+	<li><a href="./index.html?goto=finance&mold=list">财务管理</a></li>
+	<li class="active">人工充值</li>
+</ol>
+<div class="box">
+	<div class="box-header">操作人:<span id="approver" class="normal"></span>
+	</div>
+	<div class="row box-content">
+		<form class="form-horizontal" enctype="multipart/form-data" id="form">
+			<div class="form-group">
+				<label for="accountId" class="col-sm-2 control-label required">选择账户</label>
+				<div class="col-sm-7">
+					<select class="form-control" name="accountId" id="accountId">
+						<option value="" selected>-请选择账户-</option>
+					</select>
+				</div>
+				<div class="col-sm-3 note hidden" id="balance"></div>
+			</div>
+			<div class="form-group">
+				<label for="payment" class="col-sm-2 control-label required">充值金额</label>
+				<div class="col-sm-7 input-group">
+				    <div class="input-group-addon currency">$</div>
+					<input type="number" min="0"  name="payment" class="form-control" id="payment" placeholder="">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="paymentCheck" class="col-sm-2 control-label required">确认充值金额</label>
+				<div class="col-sm-7 input-group">
+				    <div class="input-group-addon currency">$</div>
+					<input type="number" min="0" class="form-control" id="paymentCheck" placeholder="">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="commission" class="col-sm-2 control-label required">充值手续费</label>
+				<div class="col-sm-7 input-group">
+				    <div class="input-group-addon currency">$</div>
+					<input type="number"  min="0" name="commission" class="form-control" id="commission" placeholder="">
+				</div>
+				<div class="col-sm-3 note hidden" id="amount"></div>
+			</div>
+			<div class="form-group">
+				<label for="chargeType" class="col-sm-2 control-label required">充值方式</label>
+				<div class="col-sm-7">
+					<select class="form-control col-md-5" name="chargeType" id="chargeType">
+						<option value="" selected>-请选择充值方式-</option>
+						<!-- <option value="0">unknown</option> -->
+						<option value="1">paypal</option>
+						<option value="2">银行电汇</option>
+						<option value="4">平账</option>
+						<!-- <option value="3">信用卡</option> -->
+						<option value="5">测试费用</option>
+						<option value="6">bonus</option>
+						<option value="7">押金</option>
+						<option value="8">后付费</option>
+					</select>
+				</div>
+			</div>
+			<div class="add_group add_group_1 hidden">
+				<div class="form-group">
+					<label for="remitter" class="col-sm-2 control-label required">打款人</label>
+					<div class="col-sm-7 input-group">
+						<input type="text" name="remitter" id="remitter" class="form-control input-single">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="remittTime" class="col-sm-2 control-label required">打款时间</label>
+					<div class="col-sm-7 input-group">
+						<input type="text" name="remittTime" id="remittTime" class="form-control input-single">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="file" class="col-sm-2 control-label required">打款截图</label>
+					<div class="col-sm-7 input-group">
+						<input type="file" name="file" id="file_1" class="form-control input-single">
+					</div>
+				</div>
+			</div>
+			<div class="add_group add_group_2 hidden">
+				<div class="form-group">
+					<label for="affid" class="col-sm-2 control-label required">Aff ID</label>
+					<div class="col-sm-7 input-group">
+						<input type="text" name="affid" id="affid" class="form-control input-single">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="file" class="col-sm-2 control-label required">邮件截图</label>
+					<div class="col-sm-7 input-group">
+						<input type="file" name="file" id="file_2" class="form-control input-single">
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-2 control-label"></label>
+				<div class="col-sm-7">
+					<button type="submit" class="btn btn-primary confirm">充值</button>
+					<button type="submit" class="btn btn-primary cancel">取消</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<script type="text/html" id="currencyTmp">
+	<%= currency %>
+</script>

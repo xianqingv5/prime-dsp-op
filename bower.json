@@ -1,0 +1,26 @@
+{
+  "name": "dsp",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "elaine.ma<elaine.ma@yeahmbi.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "static/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^1.9.2",
+    "bootstrap": "~3.0.0",
+    "select2": "",
+    "bootstrap-datetimepicker": "",
+    "model": "^0.2.5",
+    "eventproxy": "^0.3.1"
+  }
+}

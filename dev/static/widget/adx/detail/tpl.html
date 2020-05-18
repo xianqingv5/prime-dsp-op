@@ -1,0 +1,113 @@
+<ol class="breadcrumb">
+	<li class="active">编辑Adx</li>
+	<li><a href="./index.html?goto=adx&mold=list">Adx 管理</a></li>
+</ol>
+<form id="form-container">
+	<div class="form-group">
+		<label for="id">Adx ID</label>
+		<input type="text" name="id" class="form-control" id="id" placeholder="" disabled>
+	</div>
+	<div class="form-group">
+		<label for="token">Token</label>
+		<input type="email" name="token" class="form-control" id="token" placeholder="" disabled>
+	</div>
+    <div class="form-group">
+        <label for="name">名称</label>
+        <input type="text" name="name" class="form-control" id="name" placeholder="">
+    </div>
+	<div class="form-group">
+		<label for="chargeType">计费类型</label><br />
+		<label class="status radio-inline ">
+	  		<input type="radio" name="chargeType" value="1">nurl
+		</label>
+		<label class="status radio-inline ">
+	  		<input type="radio" name="chargeType" value="2">adm
+		</label>
+	</div>
+
+	<div class="form-group">
+		<label for="priceType">出价类型</label><br />
+		<label class="status radio-inline ">
+	  		<input type="radio" name="priceType" value="1">第一出价
+		</label>
+		<label class="status radio-inline ">
+	  		<input type="radio" name="priceType" value="2">第二出价
+		</label>
+	</div>
+
+	<div class="form-group">
+		<label for="adxUsageType">使用类型</label><br />
+		<label class="status radio-inline ">
+	  		<input type="radio" name="adxUsageType" value="1">普通
+		</label>
+		<label class="status radio-inline ">
+	  		<input type="radio" name="adxUsageType" value="2">租用
+		</label>
+	</div>
+
+	<div class="form-group">
+		<label for="type">类型</label><br />
+		<label class="status radio-inline ">
+	  		<input type="radio" name="type" value="1">Normal
+		</label>
+		<label class="status radio-inline ">
+	  		<input type="radio" name="type" value="2">Prime
+		</label>
+		<label class="status radio-inline ">
+	  		<input type="radio" name="type" value="3">Pop
+		</label>
+		<label class="status radio-inline ">
+	  		<input type="radio" name="type" value="4">Adult
+		</label>
+		<!-- <label class="status radio-inline ">
+	  		<input type="radio" name="type" value="5">Pop Prime
+		</label> -->
+	</div>
+	<div class="form-group">
+        <label for="approveClass">分级</label>
+        <input type="number" name="approveClass" class="form-control" id="approveClass" placeholder="">
+    </div>
+
+	<div class="form-group">
+        <label for="forUser">For User</label>
+        <input type="text" name="forUser" class="form-control" id="forUser" placeholder="格式：[userID1, userID2]，例如：[1,2,3]">
+		<!--<select name="forUser" id="forUser">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+		</select>-->
+    </div>
+
+	<div class="form-group">
+		<label for="isSupportHtml">支持HTML</label><br />
+		<label class="status radio-inline ">
+	  		<input type="radio" name="isSupportHtml" value="1">Yes
+		</label>
+		<label class="status radio-inline ">
+	  		<input type="radio" name="isSupportHtml" value="0">No
+		</label>
+	</div>
+
+	<div class="form-group">
+		<label for="isSupportVideo">支持Video</label><br />
+		<label class="status radio-inline ">
+	  		<input type="radio" name="isSupportVideo" value="1">Yes
+		</label>
+		<label class="status radio-inline ">
+	  		<input type="radio" name="isSupportVideo" value="0">No
+		</label>
+	</div>
+
+	<div class="form-group">
+		<label for="status">状态</label><br />
+		<label class="status radio-inline ">
+	  		<input type="radio" name="status" value="1">开启
+		</label>
+		<label class="status radio-inline ">
+	  		<input type="radio" name="status" value="2">关闭
+		</label>
+	</div>
+
+	<button type="submit" class="btn btn-primary confirm">保存</button>
+	<button type="button" class="btn btn-default cancel">返回</button>
+</form>

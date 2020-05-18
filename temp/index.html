@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>DSP- 运营系统</title>
+<meta charset="UTF-8" />
+<!-- hash -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="static/css/bootstrap.css" />
+<link rel="stylesheet" href="static/css/base.css" />
+<link rel="stylesheet" id="customStyle" href="" />
+<!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+    <header class="navbar" id="main-navbar">
+    </header>
+
+    <!-- 内容开始  -->
+    <div id="content">
+        <div id="msg_placeholder"></div>
+    </div>
+    <!-- 内容结束    -->
+
+    <!--Footer-->
+    <div class="row-fluid">
+      <div id="footer" class="span12">
+        <script type="text/javascript">document.write(new Date().getFullYear())</script> 
+            Yeahmobi DSP </div>
+    </div>
+    <!--end-Footer-->
+    <script src="static/libs/jquery/dist/jquery.min.js"></script>
+    <script src="static/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="static/script/common.js"></script>
+    <script>
+    $(document).ready(function(){
+        var entrance = {
+            checkLogin: function() {
+                var token = localStorage.getItem("token");
+                if (!token) {
+                    window.location.href = "./login.html";
+                }
+            },
+            //获取当前时区和日期
+            getCurrentTime : function() {
+                var timezone = 8;
+                var week = ["Sunday", "Monday", "Tuesday" , "Wednesday", "Thursday", "Friday", "Saturday"];
+                var d = new Date();
+                var year = d.getFullYear();
+                var month = parseInt(d.getMonth() + 1) > 9 ? parseInt(d.getMonth() + 1) : ("0" + parseInt(d.getMonth() + 1));
+                var day = d.getDate() > 9 ? d.getDate() : ("0" + d.getDate());
+                var minutes = d.getMinutes() > 9 ? d.getMinutes() : ("0" + d.getMinutes());
+                var date = "(UTC +" + (timezone > 0 ? timezone : (-timezone)) + ") " + year + "-" + month + "-" + day + " " + week[d.getDay()] + " " + d.getHours() + " : " + minutes;
+                return date;
+            },
+            bindEvent:function(){
+                $("#main_logout").unbind().on("click", function(e){
+                    e.preventDefault();
+                    var queryData = {};
+                    common.ajaxRequest("logout", queryData, function(data) {
+                        if (data.status == 0) {
+                            window.location = "./login.html";
+                        }
+                    })
+                })
+
+            },
+            handleInit:function() {
+                var name = common.urlTools.getUrlParam("goto");
+                var type = common.urlTools.getUrlParam("mold");
+                $("#main-navbar").load('header.html', function(){
+                    var title = $("#" + name).text() || "首页";
+
+                    common.urlTools.urlRoute(name, type);
+
+                    $("#date").text(entrance.getCurrentTime());
+
+                    document.title = "DSP- 运营系统 "+  title;
+
+                    entrance.getAuthority();
+                    entrance.bindEvent();
+                });
+            },
+            getAuthority:function(){
+                var roleId = localStorage.getItem("roleId");
+                var email = localStorage.getItem("email");
+                var approverId = localStorage.getItem("approverId");
+                var name = localStorage.getItem("name");
+                $("#userInfomation").text(email).attr({"roleId": roleId, "approverId": approverId, "name":name});
+                common.handleAuthority(roleId);
+            },
+            init:function() {
+                entrance.checkLogin();
+                entrance.handleInit();
+            }
+        }
+        entrance.init();
+    })
+    </script>
+
+    <script type="text/html" id="tableListPage">
+        <div class="pagerContainer">
+            <span>Page <%=data.currentPage %> of <%=data.totalPage %></span>
+            <% if(data.totalPage > 1){ %>
+                <span class="pageList pageListControl" data-value="<%=data.currentPage - 1 > 0 ? data.currentPage - 1 : 0 %>">&laquo; Prev</span>
+            <% } %>
+            <% if(data.totalPage > 1){ %>
+                <% for(var i = start; i < end + 1; i++){ %>
+                <span class="pageList item <% if(data.currentPage==i){%>pagelistCurrent<%}%> " data-value="<%= i %>"><%= i %></span>
+                <% } %>
+            <% } %>
+            <% if(data.totalPage > 1){ %>
+                <span class="pageList pageListControl" data-value="<%= data.currentPage + 1 < data.totalPage + 1 ? data.currentPage 
+                + 1: 0 %>">Next &raquo;</span>
+            <% } %>
+            <span>共 <%= data.totalSize %>条数据</span>
+        </div>
+    </script>
+</body>
+</html>

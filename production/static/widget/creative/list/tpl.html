@@ -1,0 +1,83 @@
+<form class=row>
+	<div class=col-md-2>
+      	<select class=form-control id="" name=approvalStatus>
+			<option value="">-审核状态-</option>
+			<option value=1 selected>审核中</option>
+			<option value=2>审核通过</option>
+			<option value=3>审核未通过</option>
+			<option value=4>审核通过(部分)</option>
+      	</select>
+    </div>
+	<div class=col-md-2>
+      	<select class=form-control id=approverId name=approverId>
+      		<option value="" selected>-审核人-</option>
+      	</select>
+    </div>
+	<div>
+		<input name=startTime type=text class="col-md-2 yeah-dtpicker form_datetime" id=start placeholder=From data-date-format=yyyy-mm-dd data-date-autoclose=true data-date-today-btn=false data-min-view=2 data-picker-position=top-left readonly>
+		<div class=pull-left style=display:inline-block;line-height:34px><span>-</span></div>
+		<input name=endTime type=text class="col-md-2 yeah-dtpicker form_date" id=end placeholder=To data-date-format=yyyy-mm-dd data-date-autoclose=true data-date-today-btn=false data-min-view=2 data-picker-position=top-left readonly>
+	</div>
+    <div class=pull-right>
+		<div class=form-inline>
+	      	<select class=form-control id=searchChoice>
+				<option value=adId>广告ID</option>
+				<option value=accountId>所属账户ID</option>
+	      	</select>
+			<div class="form-group has-success">
+				<input type=text class=form-control id=inputSuccess4 aria-describedby=inputSuccess4Status>
+				<a href=#><span class="glyphicon glyphicon-search" id=search></span></a>
+			</div>
+		</div>
+    </div>
+    <div class=hidden>
+		<input type=text id=adIds>
+    </div>
+	<div class=hidden>
+        <input name=limit class=hidden value=20>
+    </div>
+</form>
+<div class=page></div>
+<table class=table>
+	<thead>
+		<th>广告ID</th>
+		<th>广告名称</th>
+		<th>所属账户</th>
+		<th>展现样式</th>
+		<th class=sortable><span>广告提交时间</span>
+			
+		</th>
+		<th>审核人</th>
+		<th>审核状态</th>
+		<th>备注</th>
+		<th>审核时间</th>
+		<th>操作</th>
+	</thead>
+	<tbody class=row id=list>
+	</tbody>
+</table>
+<div class=page></div>
+
+<script type=text/html id=materialsList>
+	<% for (var i = 0, len = data.length, unapprovedAdIds = []; i < len; i++) {%>
+		<% var unapproAdIds = countUnapprovedAdIds(data[i].adId, data[i].approvalStatus, unapprovedAdIds)%>
+	<% } %>
+	<% for (var i = 0, len = data.length; i < len; i++) {%>
+		<tr id="<%= data[i].adId %>">
+			<td><%= data[i].adId %></td>
+			<td><%= data[i].adName %></td>
+			<td><%= data[i].accountName %></td>
+			<td><%= handleAdType(data[i].adType) %></td>
+			<td><%= data[i].createdTime %></td>
+			<td><%= data[i].approverName %></td>
+			<td><%= handleStatus(data[i].approvalStatus) %></td>
+			<td><%= data[i].comment %></td>
+			<td><%= data[i].approvalTime %></td>
+			<td>
+				<% if (data[i].approvalStatus == 1) { %>
+					<button type="button" adId="<%= data[i].adId %>" class="btn btn-primary detail" unapprovedAdIds="<%= unapproAdIds %>">审核</button>
+				<% } %>
+			</td>
+		</tr>
+	<% } %>
+</script>

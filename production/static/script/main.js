@@ -1,0 +1,1 @@
+"use strict";requirejs.config({waitSeconds:60,paths:{template:"./static/libs/template"},shim:{underscore:{exports:"_"},jquery:{exports:"$"},jQueryUI:{deps:["jquery"]},formValidation:{deps:["bootstrap3"]}}});

@@ -1,0 +1,146 @@
+a,body {
+	color: #666
+}
+body,html {
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+	font-family: '微软雅黑 Regular','微软雅黑'
+	background: #FAFAFA;
+	padding: 0;
+}
+.bg_lg {
+	background: #28b779
+}
+.bg_ly {
+	background: #ffb848
+}
+#loginbox {
+	overflow: hidden!important;
+	text-align: left;
+	position: relative
+}
+#loginbox,#logo {
+	width: 35%;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative
+}
+#logo img {
+	margin: 0 auto;
+	display: block
+}
+#loginbox form {
+	width: 100%;
+	background: #FAFAFA;
+	position: relative;
+	top: 0;
+	left: 0
+}
+#loginbox .main_input_box {
+	margin: 0 auto;
+	text-align: center;
+	font-size: 13px;
+}
+
+#loginbox .main_input_box .add-on {
+	padding: 10px;
+	color: #fff;
+	width: 30px;
+	display: inline-block;
+	height: 40px;
+}
+#loginbox .main_input_box input {
+	height: 40px;
+	display: inline-block;
+	width: 75%;
+	line-height: 28px;
+	margin-bottom: 3px;
+	border: 1px solid #DADEE2;
+	border-radius: 0;
+	padding-left: 12px;
+}
+#loginbox .controls {
+	padding: 0 20px
+}
+#loginbox .control-group {
+	padding: 20px 0;
+	margin-bottom: 0
+}
+#loginbox .normal_text {
+	padding: 15px 10px;
+	text-align: center;
+	font-size: 14px;
+	line-height: 20px;
+	background: #FAFAFA;
+	color: #666
+}
+.btn-success {
+	background: #989DA3;
+	display: block;
+	margin: auto;
+	padding: 7px 0;
+	width: 86%;
+	border:none;
+}
+#loginbox .main_input_box input#verification_code{
+	width: 40%;
+	border-radius: 4px;
+	margin-left: 25px;
+}
+.alert {
+    padding: 8px;
+}
+
+a.close{
+	opacity: .5;
+	background: transparent;
+}
+.alert-error{
+	background-color: #ffe3e3;
+	color: #B85355;
+}
+.alert-success{
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+/*yt_overlay*/
+.yt_overlay {
+	background: rgba(0, 0, 0, .4);
+    position: fixed;
+    z-index: 99999;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0px;
+    overflow: hidden;
+    text-align: center;
+}
+#verication_img{
+	width: 45%;
+}
+@media (max-width:800px) {
+	#logo {
+		width: 60%
+	}
+
+	#loginbox {
+		width: 80%
+	}
+}
+
+@media (max-width:480px) {
+	#logo {
+		width: 40%
+	}
+
+	#loginbox {
+		width: 90%
+	}
+
+	#loginbox .control-group {
+		padding: 8px 0;
+		margin-bottom: 0
+	}
+}

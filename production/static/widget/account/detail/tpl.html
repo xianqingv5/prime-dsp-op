@@ -1,0 +1,87 @@
+<ol class=breadcrumb>
+    <li><a href="./index.html?goto=account&mold=list">DSP管理</a></li>
+    <li class=active>编辑账户</li>
+</ol>
+<form>
+    <div class=form-group>
+        <label for=id>账户ID</label>
+        <input name=accountId type=text class=form-control id=accountId placeholder="" disabled>
+    </div>
+    <div class=form-group>
+        <label for=accountEmail>账户邮箱</label>
+        <input name=accountEmail type=email class=form-control id=accountEmail placeholder="" disabled>
+    </div>
+    <div class=form-group>
+        <label for=accountName>账户名称</label>
+        <input name=accountName type=name class=form-control id=accountName placeholder="" disabled>
+    </div>
+    
+    
+    <div class=form-group>
+        <label for=contactPhoneNumber>IO编码</label>
+        <input name=contactPhoneNumber type=text class=form-control id=contactPhoneNumber placeholder="">
+    </div>
+    
+    <div class=form-group>
+        <label for=recommender>财务ID</label>
+        <input name=recommender type=text class=form-control id=recommender placeholder="">
+    </div>
+    <div class=form-group>
+        <label for=qq>QQ</label>
+        <input name=qq type=text class=form-control id=qq placeholder="">
+    </div>
+    <div class=form-group>
+        <label for=skype>Skype</label>
+        <input name=skype type=text class=form-control id=skype placeholder="">
+    </div>
+
+    
+    <div class=form-group>
+        <label for=customerType>账户类型</label><br>
+        <label class=status>
+	  		<input name=customerType type=radio value=1>公司
+		</label>
+        <label class=status>
+	  		<input name=customerType type=radio value=2>个人
+		</label>
+    </div>
+    <div class=form-group>
+        <label for=companyName>公司名称</label>
+        <input name=companyName type=text class=form-control id=companyName placeholder="">
+    </div>
+    <div class=form-group>
+        <label for=companyWebSite>公司地址</label>
+        <input name=companyWebSite type=text class=form-control id=companyWebSite placeholder="">
+    </div>
+    <div class=form-group>
+        <label for=commissionRatio>服务费比例</label>
+        <input name=commissionRatio type=text class=form-control id=commissionRatio placeholder="">
+    </div>
+    <div class=form-group>
+        <label for=pmName>相关AM</label>
+        <select class=form-control id=amId name=amId>
+      	</select>
+    </div>
+    <div class=form-group>
+        <label for=status>账户状态</label><br>
+        <label class=status>
+	  		<input name=status type=radio value=1> 有效
+		</label>
+        <label class=status>
+	  		<input name=status type=radio value=2> 无效
+		</label>
+    </div>
+
+    <div class=form-group>
+        <label for=htmlRight>HTML 权限</label><br>
+        <label class=htmlRight>
+            <input name=htmlRight type=radio value=1> 开
+        </label>
+        <label class=htmlRight>
+            <input name=htmlRight type=radio value=0> 关
+        </label>
+    </div>
+
+    <button class="btn btn-primary confirm" type=submit>保存</button>
+    <button class="btn btn-primary cancel" type=button>取消</button>
+</form>

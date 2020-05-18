@@ -1,0 +1,1 @@
+.input-group[class*=col-]{padding-left:15px;padding-right:15px}.note{display:inline-table;line-height:34px}label.required:after{content:" *";color:red;position:absolute;top:10px;right:4px}.btn-primary+.btn-primary{margin-left:100px}.form-horizontal .form-group{margin-bottom:40px}#amount:before{content:"实际退款 $："}#balance:before{content:"账户余额 $："}p{font-size:12px;color:#8a6d3b}

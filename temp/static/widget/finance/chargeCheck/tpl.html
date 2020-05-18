@@ -1,0 +1,117 @@
+
+<ol class="breadcrumb">
+	<li><a href="./index.html?goto=finance&mold=list">财务管理</a></li>
+	<li class="active">充值审核</li>
+</ol>
+<div class="box">
+	<div class="box-header">流水编号:<span id="number" class="normal"></span>审核人:<span id="approver" class="normal"></span>审核类型：<span id="type" class="normal"></span>
+	</div>
+	<div class="row">
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label for="accountId" class="col-sm-2 control-label">充值账户</label>
+				<div class="col-sm-7">
+					<input type="payment" name="accountId" class="form-control" id="accountId" disabled placeholder="">
+				</div>
+				<div class="col-sm-3 note" id="balance"></div>
+			</div>
+			<div class="form-group">
+				<label for="payment" class="col-sm-2 control-label">充值金额</label>
+				<div class="col-sm-7 input-group">
+				    <div class="input-group-addon">$</div>
+					<input type="text" name="payment" class="form-control" id="payment" disabled placeholder="">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="commission" class="col-sm-2 control-label">充值手续费</label>
+				<div class="col-sm-7 input-group">
+				    <div class="input-group-addon">$</div>
+					<input type="text" name="commission" class="form-control" id="commission" disabled placeholder="">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="chargeType" class="col-sm-2 control-label">充值方式</label>
+				<div class="col-sm-7">
+					<select class="form-control" name="chargeType" id="chargeType" disabled>
+						<option value="0">unknown</option>
+						<option value="1">paypal</option>
+						<option value="2">银行电汇</option>
+						<option value="3">信用卡</option>
+					</select>
+				</div>
+				<div class="col-sm-3 note" id="amount"></div>
+			</div>
+			<div class="form-group">
+				<label for="approvalStatus" class="col-sm-2 control-label required">审核结果</label>
+				<div class="col-sm-7">
+					<select class="form-control" name="approvalStatus" id="approvalStatus">
+						<option value="" selected>-审核结果-</option>
+						<option value="2">审核通过</option>
+						<option value="3">审核失败</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="comment" class="col-sm-2 control-label">备注</label>
+				<div class="col-sm-7">
+					<textarea class="form-control" rows="3"  id="comment" name="comment" placeholder=""></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-2 control-label"></label>
+				<div class="col-sm-7">
+					<button type="submit" class="btn btn-primary submitAndGo">保存并继续</button>
+					<button type="submit" class="btn btn-primary submitAndExit">保存并退出</button>
+					<button type="submit" class="btn btn-primary cancel">取消</button>
+				</div>
+			</div>
+			<div class="hidden">
+				<input type="text" name="chargeId" id="chargeId" class="hidden">
+			</div>
+		</form>
+	</div>
+</div>
+
+<script type="text/html" id="financeList">
+<table class="table table-hover">
+	<thead>
+		<th>流水编号</th>
+		<th>时间</th>
+		<th>账户ID</th>
+		<th>账户名称</th>
+		<th>流水</th>
+		<th>类型</th>
+		<th>操作人</th>
+		<th>审核人</th>
+		<th>状态</th>
+		<th>备注</th>
+		<th>操作</th>
+	</thead>
+	<tbody>
+		<% for (var i = 0, len = data.length; i < len; i++) {%>
+			<tr>
+				<td><%= data[i].numberId %></td>
+				<td><%= data[i].date %></td>
+				<td><%= data[i].acountID %></td>
+				<td><%= data[i].acountName %></td>
+				<% if (/-/.test(data[i].number)) {%>
+					<td class="payout"><%= data[i].number %></td>
+				<% } else { %>
+					<td class="income"><%= data[i].number %></td>
+				<% } %>
+				<td><%= data[i].type %></td>
+				<td><%= data[i].actionPerson %></td>
+				<td><%= data[i].verifierPerson %></td>
+				<td><%= data[i].status %></td>
+				<td><%= data[i].note %></td>
+				<td>
+					<% if (data[i].action) {%>
+						<button type="button" id="<%= data[i].numberId %>" class="btn btn-primary"><%= data[i].action %></button>
+					<% } else { %>
+					<% } %>
+				</td>
+			</tr>
+		<% } %>
+	</tbody>
+</table>
+</script>

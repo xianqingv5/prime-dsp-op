@@ -1,0 +1,126 @@
+<form id=form-container>
+    <div class=form-inline> 
+        <div class=form-group>
+            
+            <input name=id type=text class="form-control filter" placeholder=ID，回车查询 data-key=id> 
+            <input name=name type=text class="form-control filter" placeholder="Adx Name，回车查询" data-key=name> 
+        </div>  
+        <button class="btn btn-primary" type=submit id=submit>查询</button>  
+        <button class="btn btn-default" id=reset>重置</button>
+    </div>
+    <div class=extend-param>
+        <div>
+            <label for=adxUsageType class=title>使用类型</label>
+            <label class="status radio-inline">
+                <input name=adxUsageType type=radio value=1 checked>普通
+            </label>
+            <label class="status radio-inline">
+                <input name=adxUsageType type=radio value=2>租用
+            </label>
+        </div>
+
+        <div>
+            <label for=type class=title>类型</label>
+            <label class="status radio-inline">
+                <input name=type type=radio value=1>Normal
+            </label>
+            <label class="status radio-inline">
+                <input name=type type=radio value=2>Prime
+            </label>
+            <label class="status radio-inline">
+                <input name=type type=radio value=3>Pop
+            </label>
+            <label class="status radio-inline">
+                <input name=type type=radio value=4>Video
+            </label>
+            
+        </div>
+
+        
+
+        <div>
+            <label for=isSupportHtml class=title>支持HTML</label>
+            <label class="status radio-inline">
+                <input name=isSupportHtml type=radio value=1>Yes
+            </label>
+            <label class="status radio-inline">
+                <input name=isSupportHtml type=radio value=0>No
+            </label>
+        </div>
+
+        <div>
+            <label for=isSupportVideo class=title>支持Video</label>
+            <label class="status radio-inline">
+                <input name=isSupportVideo type=radio value=1>Yes
+            </label>
+            <label class="status radio-inline">
+                <input name=isSupportVideo type=radio value=0>No
+            </label>
+        </div>
+
+        <div>
+            <label for=status class=title>状态</label>
+            <label class="status radio-inline">
+                <input name=status type=radio value=1 checked>开启
+            </label>
+            <label class="status radio-inline">
+                <input name=status type=radio value=2>关闭
+            </label>
+        </div>
+    </div>
+    <div class=hidden>
+        <input name=limit class=hidden value=20>
+    </div>
+</form>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<th>ID</th>
+        <th>Name</th>
+        <th>Token</th>
+        <th>计费类型</th>
+        <th>出价类型</th>
+        <th>使用类型</th>
+        <th>Adx类型</th>
+        <th>ForUser</th>
+        <th>支持HTML</th>
+        <th>支持Video</th>
+        <th>状态</th>
+        <th>分级</th>
+		<th>操作</th>
+	</thead>
+	<tbody class=row id=list>
+	</tbody>
+</table>
+<div class=page></div>
+
+<script type=text/html id=materialsList>
+
+    <% if(loading) { %>
+        <tr><td  class="text-center" colspan="13">Loading...</td></tr>
+    <% } %>
+    <% if(data && !data.length) { %>
+        <tr><td  class="text-center" colspan="13">No Result</td></tr>
+    <% } %>
+	<% if(data) { for (var i = 0, len = data.length, adx; i < len && (adx = data[i]); i++) {%>
+		<tr id="<%= adx.id %>">
+            <td><%= adx.id %></td>
+            <td><%= adx.name %></td>
+            <td><%= adx.token %></td>
+            <td class="text-center"><%= chargeType(adx.chargeType) %></td>
+            <td class="text-center"><%= priceType(adx.priceType) %></td>
+            <td class="text-center"><%= adxUsageType(adx.adxUsageType) %></td>
+            <td class="text-center"><%= type(adx.type) %></td>
+            <td><%= adx.forUser %></td>
+            <td class="text-center"><%=# tureOrFalse(adx.isSupportHtml) %></td>
+            <td class="text-center"><%=# tureOrFalse(adx.isSupportVideo) %></td>
+            <td class="text-center"><%=# status(adx.status) %></td>
+            <td class="text-center"><%= adx.approveClass %></td>
+			<td class="actions text-center">
+				<button permission="updateAdExchange" type="button" adxId="<%= adx.id %>" class="btn btn-table-hover btn-default detail" >编辑</button>
+				<!--<button permission="deleteAdExchange" type="button" adxId="<%= adx.id %>" class="btn btn-table-hover btn-default delete" >删除</button>-->
+                <!--<button type="button" class="btn btn-default reason" >过滤原因</button>-->
+			</td>
+		</tr>
+	<% }} %>
+</script>

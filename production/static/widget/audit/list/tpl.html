@@ -1,0 +1,92 @@
+<form class="mb20 form-inline">
+    <input type=hidden type=text id=adIds>
+
+    <div class=mb20 style="">
+        <div class=form-group>
+            <div class=btn-group id=approval-status data-toggle=buttons>
+                <label class="btn btn-primary">
+                    <input name=approvalStatus type=radio value="">全部状态
+                </label>
+                <label class="btn btn-primary active">
+                    <input name=approvalStatus type=radio value=1 checked>审核中
+                </label>
+                <label class="btn btn-primary">
+                    <input name=approvalStatus type=radio value=2>通过
+                </label>
+                <label class="btn btn-primary">
+                    <input name=approvalStatus type=radio value=3>未通过
+                </label>
+                <label class="btn btn-primary">
+                    <input name=approvalStatus type=radio value=4>部分通过
+                </label>
+            </div>
+
+            <div class=form-group>
+                <input name=status type=checkbox value=1,2,3 id=show-closed> <label for=show-closed class="">显示已删除 Campaign</label>
+            </div>
+        </div>
+    </div>
+	
+	
+    <div>
+        
+
+        <select class=form-control id=searchChoice>
+            <option value=campaignId>Campaign ID</option>
+            <option value=acUserId>User ID</option>
+            <option value=campaignName>Campaign Name</option>
+            <option value=adId>Ad ID</option>
+            <option value=creativeId>Creative ID</option>
+        </select>
+        <div class="form-group has-success">
+            <input type=text class=form-control id=inputSuccess4 placeholder="Press enter to search" aria-describedby=inputSuccess4Status>
+        </div>
+        <button class="btn btn-primary" type=submit id=search>查询</button>
+        <button class="btn btn-default" id=reset>重置</button>
+
+        
+    </div>
+
+	
+    
+
+
+    
+<table class="table table-striped table-hover">
+	<thead>
+		<th>推广ID</th>
+		<th>推广名称</th>
+        
+        
+        <th>Email | ID</th>
+        <th>Creative Count</th>
+        <th>TMT</th>
+        <th>Geoedge</th>
+        <th>审核</th>
+		<th>操作</th>
+	</thead>
+	<tbody class=row id=list>
+	</tbody>
+</table>
+<div class=page></div>
+</form>
+<script type=text/html id=materialsList>
+	<% for (var i = 0, len = data.length; i < len; i++) {%>
+		<tr id="<%= data[i].campaignId %>">
+            <td class="text-center"><%= data[i].campaignId %></td>
+			<td><%=# status(data[i].status) %> <%= data[i].campaignName %></td>
+            <!--<td><%= data[i].accountName %></td>-->
+            <td><%= data[i].email %> | <%= data[i].accountId %></td>
+            <td class="text-center"><%= data[i].adCount %></td>
+            <td class="text-center"><%=# alertIcon(data[i].tmtStatus) %> <%=# runOnAlert(data[i].runOnAlert) %></td>
+            <td class="text-center"><%=# alertIcon(data[i].geoStatus) %> <%=# runOnAlert(data[i].geoRunOnAlert) %></td>
+            <td class="approval-status text-center">
+                <%=# handleStatus(data[i].approvalStatus) %>
+            </td>
+			<td class="actions text-center">
+				<button permission="queryCampaignApproveInfo" type="button" campaignId="<%= data[i].campaignId %>" class="btn btn-table-hover btn-default detail" >审核</button>
+                <button type="button" campaignId="<%= data[i].campaignId %>" class="btn btn-default reason" >过滤原因</button>
+			</td>
+		</tr>
+	<% } %>
+</script>

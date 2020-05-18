@@ -1,0 +1,16 @@
+.actions button + button{
+	margin-left: 50px;
+}
+.income{
+	color: #CC6600;
+}
+.payout{
+	color: #336699;
+}
+form{
+	width: 100%;
+}
+.form-inline .control-label {
+    float: left;
+    line-height: 35px;
+}

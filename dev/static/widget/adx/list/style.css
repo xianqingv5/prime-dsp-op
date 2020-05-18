@@ -1,0 +1,76 @@
+form{
+	/* width: 100%; */
+}
+.input-group[class*="col-"] {
+    float: left;
+}
+.has-success .form-control {
+    border-color: #ccc;
+}
+.has-success .form-control-feedback{
+	color: #ccc;
+}
+.glyphicon-chevron-down,.glyphicon-chevron-up{
+	cursor: pointer;
+	position: absolute;
+}
+.sortable{
+	position: relative;
+}
+.glyphicon-chevron-down{
+    top: 15px;
+}
+.glyphicon-chevron-up{
+    top: 5px;
+}
+.disabled{
+	opacity: .35
+}
+#inputSuccess4{
+	width: 100px;
+}
+.yeah-dtpicker{
+	height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+#approval-status .btn {
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+#inputSuccess4 {
+    width: 200px;
+    text-align: right;
+}
+
+#search {
+    width: 100px;
+}
+
+.approval-status .label{
+    min-width: 70px;
+    padding:  0.5em .6em;
+    display: inline-block;
+}
+
+#form-container label.title {
+    width: 100px;
+}
+#form-container label {
+    min-width: 80px;
+}
+
+.extend-param {
+    padding: 10px;
+    background: #eee;
+    margin-top: 10px;
+}

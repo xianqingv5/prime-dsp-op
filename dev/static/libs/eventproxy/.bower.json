@@ -1,0 +1,34 @@
+{
+  "name": "eventproxy",
+  "main": "index.js",
+  "version": "0.3.1",
+  "homepage": "http://html5ify.com/eventproxy",
+  "authors": [
+    "shyvo1987@gmail.com"
+  ],
+  "description": "An implementation of task/event based asynchronous pattern",
+  "keywords": [
+    "event",
+    "task-base",
+    "event machine",
+    "nested callback terminator"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "0.3.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.3.1",
+    "commit": "46c40dae852fb66d4d726c950ce043d68e33c72e"
+  },
+  "_source": "https://github.com/JacksonTian/eventproxy.git",
+  "_target": "^0.3.1",
+  "_originalSource": "eventproxy"
+}

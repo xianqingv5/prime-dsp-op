@@ -1,0 +1,19 @@
+.status + .status{
+	margin-left: 100px;
+}
+.form-group{
+	width: 42%;
+}
+.contact{
+	width: 48%;
+    display: inline-block;
+}
+label.block{
+	display: block;
+}
+.btn-primary + .btn-primary {
+    margin-left: 100px;
+}
+.action{
+	margin-top: 50px;
+}

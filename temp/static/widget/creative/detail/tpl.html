@@ -1,0 +1,47 @@
+<ol class="breadcrumb">
+	<li><a href="./index.html?goto=creative&mold=list">素材管理</a></li>
+	<li class="active">素材审核</li>
+</ol>
+<form>
+	<div class="row">
+		<ul class="material_detail">
+			<li>素材ID:<span id="adId"></span></li>
+			<li>素材类型：<span id="adType"></span></li>
+			<li>剩余待审核数：<span id="unapprovedAds"></span></li>
+		</ul>
+	</div>
+	<form class="row">
+		<div class="col-md-4" style="overflow:hidden;word-wrap: break-word;">
+			<img id="bannerUrl" src="" />
+			<video class="hidden" src="" controls="controls">Your browser does not support the video tag.</video>
+			<p><span id="appCategoryName"></span></p>
+			<span><a href="#" target="_blank" id="clickThroughUrl"></a><span>（点击地址）</span></span>
+			<p><span id="domain"></span><span>（顶级域名）</span></p>
+		</div>
+		<div class="col-md-8">
+			<div class="checkbox">
+				<span>请选择审核通过的流量平台*</span>
+				<label>
+				  <input type="checkbox" id="checkAll">全选
+				</label>
+			</div>
+			<div class="checkbox inner row">
+			</div>
+			<div class="unapprove">
+				<p>（部分）未审核通过的原因：</p>
+				<textarea id="reason" name="reason" class="form-control" rows="3" placeholder="请填写具体原因"></textarea>
+			</div>
+			<div class="col-md-8 actions">
+				<button type="button" class="btn btn-primary actions submitAndGoNext">保存并继续</button>
+				<button type="button" class="btn btn-primary actions submitAndExit">保存并退出</button>
+				<button type="button" class="btn btn-primary actions cancel">取消</button>
+			</div>
+		</div>
+		<input type="hidden" name="adId">
+		<input type="hidden" name="adType">
+		<input type="hidden" id="banner" name="">
+		<input type="hidden" id="videoU" name="">
+		<input type="hidden" id="icon" name="">
+		<input type="hidden" id="pic" name="">
+	</div>
+</form>

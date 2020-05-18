@@ -1,0 +1,296 @@
+<!--<script src="https://cdn.bootcss.com/highcharts/5.0.10/highcharts.js"></script>-->
+
+<div class="form-inline">
+    <div>
+        <div class="form-group">
+            <!-- <label class="form-label">查询</label> -->
+            <input placeholder="输入ID，回车查询" class="filter form-control" data-key="accountId" type="text">
+            <input placeholder="输入Email，回车查询" class="filter form-control" data-key="accountEmail" type="text">
+            <select name="am-selector" id="am-selector" class="form-control" style="min-width: 100px">
+                <option value="">All AM</option>
+            </select>
+        </div>
+        <a id="show-all" href="javascript:;" class="btn btn-default">重置</a>
+        <div id="filter-result">
+            <span>无结果</span>
+        </div>
+
+        <!-- <label for="new-win"><input id="new-win" name="new-win" type="checkbox" checked="checked" >新窗口打开</label> -->
+    </div>
+    <div id="customer-list">
+
+    </div>
+    <div class="page"></div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="filterResult">
+    <% customers.forEach(customer => { %>
+        <a href="javascript:;" account-id="<%= customer.accountId %>">
+            <%= customer.accountEmail %>
+                <i class="glyphicon glyphicon-new-window" os-param-id="<%= customer.osParamId %>"></i>
+        </a>
+        <% }) %>
+</script>
+
+<script type="text/html" id="customerList">
+
+    <table class="table table-striped-manu table-hover" id="customer-data">
+        <thead>
+            <tr>
+                <th width="5%">No.</th>
+                <th><a href="javascript:;" customer-order="accountId">[ID]Email <%=# sort('accountId', param) %></a></th>
+                <th>AM</th>
+                <th><a href="javascript:;" customer-order="totalSpend">总消费 <%=# sort('totalSpend', param) %></a></th>
+                <th><a href="javascript:;" customer-order="lastMonthSpend">上月 <%=# sort('lastMonthSpend', param) %></a></th>
+                <th><a href="javascript:;" customer-order="currentMonthSpend">本月 <%=# sort('currentMonthSpend', param) %></a></th>
+                <!--月消费-->
+                <!--日消费-->
+                <th><a href="javascript:;" customer-order="beforeYesterdaySpend">前日 <%=# sort('beforeYesterdaySpend', param) %></a></th>
+                <th><a href="javascript:;" customer-order="yesterdaySpend">昨日 <%=# sort('yesterdaySpend', param) %></a></th>
+                <th><a href="javascript:;" customer-order="todaySpending">今日 <%=# sort('todaySpending', param) %></a></th>
+                <!--日消费-->
+                <th><a href="javascript:;" customer-order="balance">余额 <%=# sort('balance', param) %></a></th>
+                <th>操作</th>
+            </tr>
+        </thead>
+
+        <% if(!customers.length) {%>
+            <tr>
+                <td colspan="11">No Data</td>
+            </tr>
+            <% } %>
+                <% if(customers.length) { %>
+                    <% customers.forEach((customer, i) => { %>
+                        <tr class="<%= i % 2 ? '' : 'odd' %>">
+                            <td class="text-center"><%= i + 1 %></td>
+                            <td><a href="javascript:;" class="customerName" data-content="<%= customer.accountEmail %>">[<%= customer.accountId %>] <%= customer.accountEmail %></a></td>
+                            <td><%= customer.amName %></td>
+                            <td class="text-right" title="<%= fn(customer, 'totalSpend') %>"><%= fns(customer, 'totalSpend') %></td>
+                            <td class=" text-right" title="<%= fn(customer, 'lastMonthSpend') %>"><%= fns(customer, 'lastMonthSpend') %></td>
+                            <td class=" text-right" title="<%= fn(customer, 'currentMonthSpend') %>"><%= fns(customer, 'currentMonthSpend') %></td>
+                            <td class="sp-color-2 text-right" title="<%= fn(customer, 'beforeYesterdaySpend') %>"><%= fns(customer, 'beforeYesterdaySpend') %></td>
+                            <td class="sp-color-2 text-right" title="<%= fn(customer, 'yesterdaySpend') %>"><%= fns(customer, 'yesterdaySpend') %></td>
+                            <td class="sp-color-2 text-right" title="<%= fn(customer, 'todaySpending') %>"><%= fns(customer, 'todaySpending') %>
+                            </td>
+                            <td class="text-right" title="<%= fn(customer, 'balance') %>"><%= fns(customer, 'balance') %></td>
+                            <td class="text-center customer-operation" style="max-width:999px">
+                                <button class="btn btn-default" campaign-list="<%= customer.accountId %>">推广</button>
+                                <button class="btn btn-default" user-history="<%= customer.accountId %>" account-email="<%= customer.accountEmail %>">图表</button>
+                                <a href="javascript:;" class="btn btn-default" os-param-id="<%= customer.osParamId %>">投放数据</a>
+                                <a permission="querCampaignApproveList" href="javascript:;" class="btn btn-default" all-campaign="<%= customer.accountId %>">素材</a>
+                            </td>
+                        </tr>
+                        <tr id="customer-detail-<%= customer.accountId %>" class="customer-detail"></tr>
+                        <% }) %>
+                            <% } %>
+    </table>
+</script>
+
+
+<script type="text/html" id="userHourlyReport">
+    <div id="hourly-report-top">
+        <span class="email"><%= tmpData.email %></span>
+        <span class="date"></span>
+        <button class="btn btn-default" duration="3">近三天</button>
+        <button class="btn btn-primary" duration="2">近两天</button>
+        <button class="btn btn-default" duration="1">今天</button>
+    </div>
+    <div id="hourly-report">
+        <div id="main1" class style=""></div>
+        <div id="main2" class style=""></div>
+    </div>
+</script>
+
+
+<script type="text/html" id="campaignList">
+
+    <% if(!data.length) {%>
+        <td colspan="11">No Data</td>
+        <% } %>
+            <% if(data.length) { %>
+                <td colspan="11">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th width="5%">
+                                    <a href="javascript:;">
+                        No.
+                    </a>
+                                </th>
+                                <th>
+                                    <a href="javascript:;" campaign-order="campaignId">
+                        [ID]Campaign Name <!--<%=# sort('campaignId', param) %>-->
+                    </a>
+                                </th>
+                                <th>
+                                    <a href="javascript:;" campaign-order="5">
+                                        <!--lastMonthSpend-->
+                                        上月
+                                        <%=# sort('5', param) %>
+                                    </a>
+                                </th>
+                                <th>
+                                    <a href="javascript:;" campaign-order="3">
+                                        <!--currentMonthSpend-->
+                                        本月
+                                        <%=# sort('3', param) %>
+                                    </a>
+                                </th>
+                                <th>
+                                    <a href="javascript:;" campaign-order="4">
+                                        <!--beforeYesterdaySpend-->
+                                        前日
+                                        <%=# sort('4', param) %>
+                                    </a>
+                                </th>
+                                <th>
+                                    <a href="javascript:;" campaign-order="1">
+                                        <!--yesterdaySpend-->
+                                        昨日
+                                        <%=# sort('1', param) %>
+                                    </a>
+                                </th>
+                                <th>
+                                    <a href="javascript:;" campaign-order="2">
+                                        <!--todaySpend-->
+                                        今日
+                                        <%=# sort('2', param) %>
+                                    </a>
+                                </th>
+
+                                <th>
+                                    操作
+                                </th>
+                            </tr>
+                        </thead>
+                        <% data.forEach((campaign, i) => { %>
+                            <tr>
+                                <td class="text-center">
+                                    <%= i + 1 %>
+                                </td>
+                                <td>[
+                                    <%= campaign.campaignId %>]
+                                        <%= campaign.campaignName %>
+                                </td>
+
+                                <td class=" text-right" title="<%= fn(campaign, 'lastMonthSpend') %>">
+                                    <%= fns(campaign, 'lastMonthSpend') %>
+                                </td>
+                                <td class=" text-right" title="<%= fn(campaign, 'currentMonthSpend') %>">
+                                    <%= fns(campaign, 'currentMonthSpend') %>
+                                </td>
+
+                                <td class="sp-color-2 text-right" title="<%= fn(campaign, 'beforeYesterdaySpend') %>">
+                                    <%= fns(campaign, 'beforeYesterdaySpend') %>
+                                </td>
+                                <td class="sp-color-2 text-right" title="<%= fn(campaign, 'yesterdaySpend') %>">
+                                    <%= fns(campaign, 'yesterdaySpend') %>
+                                </td>
+                                <td class="sp-color-2 text-right" title="<%= fn(campaign, 'todaySpend') %>">
+                                    <%= fns(campaign, 'todaySpend') %>
+                                </td>
+
+                                <td class="text-center">
+                                    <button class="btn btn-default" campaign-id="<%= campaign.campaignId %>">媒体排名</button>
+                                    <button class="btn btn-default" reason="<%= campaign.campaignId %>">过滤原因</button>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </table>
+                </td>
+                <% } %>
+</script>
+
+
+<script type="text/html" id="campaignReport">
+    <div class="form-inline pull-right mb20">
+        <button class="btn <%= tmpData.days == -2 ? 'btn-primary' : 'btn-default' %>" top5="-2">前日TOP10</button>
+        <button class="btn <%= tmpData.days == -1 ? 'btn-primary' : 'btn-default' %>" top5="-1">昨日TOP10</button>
+        <button class="btn <%= tmpData.days == 0 ? 'btn-primary' : 'btn-default' %>" top5="0">今日TOP10</button>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Publish ID</th>
+                <th>Media Name</th>
+                <th>Adx Name</th>
+                <th>Bid</th>
+                <th>Win</th>
+                <th>Imp</th>
+                <th>Click</th>
+                <th>Conv</th>
+                <!--<th>Ctr</th>
+                <th>Cvr</th>-->
+                <th>Cpm</th>
+                <!--<th>Imp/Win</th>-->
+                <th>Win Rate</th>
+                <!--<th>Win Avg</th>-->
+                <th>Income</th>
+                <!--<th>Cost</th>
+                <th>Revenue</th>-->
+            </tr>
+        </thead>
+        <% if(!data.length) {%>
+            <tr>
+                <td colspan="14">No Data</td>
+            </tr>
+            <% } %>
+                <% if(data.length) { %>
+                    <% for (var i = 0, len = data.length, adx; i < len && (campaign = data[i]); i++) {%>
+                        <tr>
+                            <td title="<%= campaign.mediaToken %>">
+                                <%= campaign.mediaToken %>
+                            </td>
+                            <td title="<%= campaign.mediaName %>">
+                                <%= campaign.mediaName %>
+                            </td>
+                            <td title="<%= campaign.platformName %>">
+                                <%= campaign.platformName %>
+                            </td>
+                            <td class="text-right" title="<%= fn(campaign, 'bid') %>">
+                                <%= fns(campaign, 'bid') %>
+                            </td>
+                            <td class="text-right" title="<%= fn(campaign, 'win') %>">
+                                <%= fns(campaign, 'win') %>
+                            </td>
+                            <td class="text-right" title="<%= fn(campaign, 'impression') %>">
+                                <%= fns(campaign, 'impression') %>
+                            </td>
+                            <td class="text-right" title="<%= fn(campaign, 'click') %>">
+                                <%= fns(campaign, 'click') %>
+                            </td>
+                            <td class="text-right" title="<%= fn(campaign, 'conversion') %>">
+                                <%= fns(campaign, 'conversion') %>
+                            </td>
+                            <!--<td class="text-right" title="<%= fn(campaign, 'ctr') %>"><%= fns(campaign, 'ctr') %></td>
+                <td class="text-right" title="<%= fn(campaign, 'cvr') %>"><%= fns(campaign, 'cvr') %></td>-->
+                            <td class="text-right" title="<%= fn(campaign, 'cpm') %>">
+                                <%= fns(campaign, 'cpm') %>
+                            </td>
+                            <!--<td class="text-right" title="<%= fn(campaign, 'impwin') %>"><%= fns(campaign, 'impwin') %></td>-->
+                            <td class="text-right" title="<%= fn(campaign, 'winRate') %>">
+                                <%= fns(campaign, 'winRate') %>
+                            </td>
+                            <!--<td class="text-right" title="<%= fn(campaign, 'win_avg') %>"><%= fns(campaign, 'win_avg') %></td>-->
+                            <td class="text-right" title="<%= fn(campaign, 'income') %>">
+                                <%= fns(campaign, 'income') %>
+                            </td>
+                            <!--<td class="text-right" title="<%= fn(campaign, 'cost') %>"><%= fns(campaign, 'cost') %></td>
+                <td class="text-right" title="<%= fn(campaign, 'revenue') %>"><%= fns(campaign, 'revenue') %></td>-->
+                        </tr>
+                        <% } %>
+                            <% } %>
+    </table>
+
+</script>

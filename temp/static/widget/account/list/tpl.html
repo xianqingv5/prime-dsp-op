@@ -1,0 +1,52 @@
+
+<form class="row actions">
+    <div class="pull-right">
+		<div class="form-inline">
+			<div class="form-group">
+				<input type="text" id="accountId" name="accountId" class="form-control" placeholder="请输入账户ID">
+				<a href="#"><span class="glyphicon glyphicon-search" id="search"></span></a>
+			</div>
+		</div>
+		<div class="hidden">
+	        <input class="hidden" name="limit" value="20">
+	    </div>
+    </div>
+</form>
+<div class="page"></div>
+<table class="table">
+	<thead>
+		<th>账户ID</th>
+		<th>账户邮箱</th>
+		<th>联系人名称</th>
+		<th>推荐人</th>
+		<th>服务费比例</th>
+		<th>账户余额</th>
+		<th>创建时间</th>
+		<th>相关AM</th>
+		<th>状态</th>
+		<th>操作</th>
+		<th></th>
+	</thead>
+	<tbody id="list">
+	</tbody>
+</table>
+<div class="page"></div>
+<script type="text/html" id="accountList">
+	<% for (var i = 0, len = data.length; i < len; i++) {%>
+		<tr>
+			<td><%= data[i].accountId %></td>
+			<td><%= data[i].accountEmail %></td>
+			<td><%= data[i].contactName %></td>
+			<td><%= data[i].recommender %></td>
+			<td><%= data[i].commissionRatio %></td>
+			<td>$<%= data[i].balance %></td>
+			<td><%= data[i].createdTime %></td>
+			<td><%= data[i].amName %></td>
+			<td><%= data[i].status %></td>
+			<td><% if (roleId != 6) { %>
+				<button accountId="<%= data[i].accountId %>" type="edit" class="btn btn-primary detail">修改</button><% } %>
+			</td>
+			<td><button accountId="<%= data[i].accountId %>" type="view" class="btn btn-primary view">查看账户</button></td>
+		</tr>
+	<% } %>
+</script>

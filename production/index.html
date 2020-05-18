@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<title>DSP- 运营系统</title>
+<meta charset=UTF-8>
+
+<meta content="width=device-width,initial-scale=1" name=viewport>
+<link href=static/css/bootstrap.css rel=stylesheet>
+<link href=static/css/select2.min.css rel=stylesheet>
+<link href=static/css/base.css?20180712163301 rel=stylesheet>
+<link href=static/libs/tableexport/css/tableexport.min.css rel=stylesheet>
+<link href="" rel=stylesheet id=customStyle>
+<!--[if lt IE 9]>
+    <script src=http://html5shim.googlecode.com/svn/trunk/html5.js></script>
+    <script src=//cdn.bootcss.com/respond.js/1.4.2/respond.min.js></script>
+<![endif]-->
+</head>
+<body>
+<meta content=20180712163301 name=hash>
+
+    <header class=navbar id=main-navbar>
+    </header>
+
+    <ul class=clear-fix id=sub-nav>
+        
+    </ul>
+
+    
+    <div id=content>
+        <div id=msg_placeholder></div>
+    </div>
+
+
+    
+
+    
+    <div class=row-fluid>
+      <div id=footer class=span12>
+        <script type=text/javascript>document.write((new Date).getFullYear())</script> 
+            Yeahmobi DSP </div>
+    </div>
+    
+    <script src=static/libs/jquery/dist/jquery.js></script>
+    <script src=static/libs/lodash/dist/lodash.min.js></script>
+    <script src=static/libs/model/dist/model-min.js></script>
+    <script src=https://cdn.bootcss.com/moment.js/2.18.1/moment.min.js></script>
+    <script src=https://cdn.bootcss.com/moment-timezone/0.5.13/moment-timezone.min.js></script>
+    <script src=https://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js></script>
+    
+
+    <script src=static/libs/bootstrap/dist/js/bootstrap.min.js></script>
+    <link href=https://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css rel=stylesheet>
+    <script src=https://cdn.bootcss.com/numeral.js/2.0.6/numeral.min.js></script>
+    <script src=static/script/common.js?20180712163301></script>
+    <script src=static/libs/js/xlsx.core.min.js></script>
+    <script src=static/libs/js/blob.js></script>
+    <script src=static/libs/js/FileSaver.min.js></script>
+    <script src=static/libs/tableexport/js/tableexport.js></script>
+    <script>$(document).ready(function(){var t={checkLogin:function(){localStorage.getItem("token")||(window.location.href="./login.html")},getCurrentTime:function(){var t=new Date,e=t.getFullYear(),o=parseInt(t.getMonth()+1)>9?parseInt(t.getMonth()+1):"0"+parseInt(t.getMonth()+1),n=t.getDate()>9?t.getDate():"0"+t.getDate(),a=t.getMinutes()>9?t.getMinutes():"0"+t.getMinutes();return"(UTC +8) "+e+"-"+o+"-"+n+" "+["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][t.getDay()]+" "+t.getHours()+" : "+a},bindEvent:function(){$("#main_logout").unbind().on("click",function(t){t.preventDefault();common.ajaxRequest("logout",{},function(t){0==t.status&&(window.location="./login.html")})})},handleInit:function(){var e=common.urlTools.getUrlParam("goto"),o=common.urlTools.getUrlParam("mold");$("#main-navbar").load("header.html",function(){var n=$("#"+e).text()||"首页";$("#date").text(t.getCurrentTime()),document.title="DSP - 运营系统["+("1"==_location?"国内":"国外")+"] "+n,t.getAuthority(),t.bindEvent(),common.urlTools.urlRoute(e,o)})},getAuthority:function(){var t=localStorage.getItem("roleId"),e=localStorage.getItem("email"),o=localStorage.getItem("approverId"),n=localStorage.getItem("name"),a=localStorage.getItem("permissions");$("#userInfomation").text(e).attr({roleId:t,approverId:o,name:n}),common.set({roleId:t,email:e,approverId:o,name:n,permissions:a})},init:function(){t.checkLogin(),t.handleInit()}};t.init()})</script>
+
+    <script type=text/html id=tableListPage>
+        <div class="pagerContainer">
+            <span>Page <%=data.currentPage %> of <%=data.totalPage %></span>
+            <% if(data.totalPage > 1){ %>
+                <span class="pageList pageListControl" data-value="<%=data.currentPage - 1 > 0 ? data.currentPage - 1 : 0 %>">&laquo; Prev</span>
+            <% } %>
+            <% if(data.totalPage > 1){ %>
+                <% for(var i = start; i < end + 1; i++){ %>
+                <span class="pageList item <% if(data.currentPage==i){%>pagelistCurrent<%}%> " data-value="<%= i %>"><%= i %></span>
+                <% } %>
+            <% } %>
+            <% if(data.totalPage > 1){ %>
+                <span class="pageList pageListControl" data-value="<%= data.currentPage + 1 < data.totalPage + 1 ? data.currentPage 
+                + 1: 0 %>">Next &raquo;</span>
+            <% } %>
+            <span>共 <%= data.totalSize %>条数据</span>
+        </div>
+    </script>
+
+    <script type=text/html id=pageTemp>
+        <nav>
+            
+            <ul class="pagination">
+                <li>
+                    <select class="form-control">
+                        <option value="20" <%= pager.limit == 20 ? 'selected' : '' %>>20</option>
+                        <option value="50" <%= pager.limit == 50 ? 'selected' : '' %>>50</option>
+                        <!-- <option value="100" <%= pager.limit == 100 ? 'selected' : '' %>>100</option> -->
+                    </select>
+                </li>
+                <li>
+                    <em>Page <%= pager.currentPage %> of <%= pager.totalPage %> ( <%= pager.totalSize %> items )</em>
+                </li>
+                <li class="<%= pager.currentPage == 1 ? 'disabled' : '' %>"><a href="javascript:;" page="<%= pager.currentPage - 1 %>">&laquo;</a></li>
+                <% for(var i = 1;i <= pager.totalPage; i++) { %>
+                    <li class="<%= pager.currentPage == i ? 'active' : '' %>"><a href="javascript:;" page="<%= i %>"><%= i %></a></li>
+                <% } %>
+                <li class="<%= pager.currentPage >= pager.totalPage ? 'disabled' : '' %>"><a href="javascript:;" page="<%= pager.currentPage + 1 %>">&raquo;</a></li>
+            </ul>
+        </nav>
+    </script>
+
+

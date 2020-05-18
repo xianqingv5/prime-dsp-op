@@ -1,0 +1,39 @@
+.material_detail{
+	list-style: none;
+    display: table;
+    border-bottom: 1px solid #F2F2F2;
+    padding-bottom: 10px;
+    width: 100%;
+}
+form{
+	width: 100%;
+}
+.inner {
+    display: block;
+}
+.material_detail li{
+	float: left;
+}
+.material_detail > li + li{
+	margin-left: 80px;
+	font-size: 16px;
+}
+.material_detail img{
+	max-width: 99%;
+}
+.checkbox label {
+    margin-top: 10px;
+}
+.unapprove{
+	 margin-top: 50px;
+}
+.actions{
+	margin-top: 50px;
+	padding:6px 10px;
+}
+.actions > button + button{
+	margin-left: 50px;
+}
+.form-control {
+    width: 60%;
+}
