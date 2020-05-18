@@ -1,0 +1,103 @@
+<div class="row actions mb20">
+	<div class="col-md-6 mb20">
+		<button permission="queryUserBalance,queryAccountIdName,recharge" type="button" class="btn btn-primary actions" id="manualCharge">人工充值</button>
+		<button permission="queryUserBalance,queryAccountIdName,refund" type="button" class="btn btn-primary actions" id="manualRefund">人工退款</button>
+		<button permission="financeApprovel,queryNextPendingChargeInfo,queryChargeInfo" type="button" class="btn btn-primary actions" id="chargeCheck">充值审核</button>
+		<button permission="financeApprovel,queryNextPendingChargeInfo,queryChargeInfo" type="button" class="btn btn-primary actions" id="refundCheck">退款审核</button>
+	</div>
+	<form class="col-md-6 text-right pull-right mb20">
+		<div class="form-inline">
+			<label for="approvalStatus pull-left" class="control-label">流水状态</label>
+			<div class="col-md-3">
+				<select class="form-control" name="approvalStatus" id="approvalStatus" style="width:100%">
+					<option value="1">待确认</option>
+					<option value="2">审核通过</option>
+					<option value="3">审核失败</option>
+				</select>
+			</div>
+			<div>
+				<input class="col-md-3 yeah-dtpicker form_datetime" name="startTime" id="start" type="text" data-date-format="yyyy-mm-dd" data-date-autoclose="true" data-date-today-btn="false" data-min-view="2" data-picker-position="top-left" placeholder="From" readonly />
+				<div class="pull-left" style="display: inline-block;line-height: 34px;"><span>-</span></div>
+				<input class="col-md-3 yeah-dtpicker form_date" id="end" type="text" name="endTime" data-date-format="yyyy-mm-dd" data-date-autoclose="true" data-date-today-btn="false" data-min-view="2" data-picker-position="top-left" placeholder="To" readonly />
+			    <a href="#" class="col-md-1"><span class="glyphicon glyphicon-search" id="search"></span></a>
+			</div>
+			<div class="hidden">
+		        <input class="hidden" name="limit" value="20">
+		    </div>
+		</div>
+	</form>
+	<form class="form-inline col-md-6" style="width: 100%;">
+        <div class="form-group">
+            <input placeholder="输入ID，回车查询" class="filter form-control" name="findUserId" data-key="accountId" type="text">
+            <input placeholder="输入Email，回车查询" class="filter form-control" name="findUserEmail" data-key="accountEmail" type="text">
+            <select name="chargeType" id="chargeType" class="form-control" style="min-width: 100px">
+                <option value="">全部收款类型</option>
+                <option value="1">paypal</option>
+                <option value="2">信用卡</option>
+                <option value="3">银行电汇</option>
+                <option value="4">平账</option>
+                <option value="5">赔款</option>
+            </select>
+        </div>
+        <a id="show-all" href="javascript:;" class="btn btn-default">重置</a>
+    </form>
+</div>
+<div class="page"></div>
+<table id="finance-list" class="table table-hover">
+	<thead>
+		<th>流水编号</th>
+		<th>时间</th>
+		<th>账户ID</th>
+		<th>账户名称</th>
+		<th>流水</th>
+		<th>类型</th>
+		<th>操作人</th>
+		<th>审核人</th>
+		<th>打款人</th>
+		<th>状态</th>
+		<th>备注</th>
+		<th>操作</th>
+	</thead>
+	<tbody id="list">
+	</tbody>
+</table>
+<div class="page"></div>
+<script type="text/html" id="financeList">
+	<% for (var i = 0, len = data.length; i < len; i++) {%>
+		<tr id="<%= data[i].chargeId %>" type="<%= data[i].type < 7 ? 'chargeCheck' : 'refundCheck' %>" action="view">
+			<td class="text-center"><%= data[i].chargeId %></td>
+			<td><%= data[i].createdTime %></td>
+			<td class="text-center"><%= data[i].accountId %></td>
+			<td><%= data[i].accountName %></td>
+			<td class="<%= handleAmount(data[i].type) %>" data-type="data[i].type">$<%= data[i].amount %></td>
+			<td><%= handleType(data[i].type) %></td>
+			<td><%= data[i].operator %></td>
+			<td><%= data[i].approver %></td>
+			<td><%= data[i].remitter %></td>
+			<td><%= handleStatus(data[i].approvalStatus) %></td>
+			<td><%= data[i].comment %></td>
+			<td>
+				<% if (!!data[i].attchment && (data[i].type)%2 != 0) {%>
+					<button class="btn btn-default btn-table-hover attach-img" imgLink="<%= data[i].attchment %>">查看截图</button>
+				<% } %>  
+				<% if (data[i].isShow == 2 && roleId == 4) {%>
+					<button chargeId="<%= data[i].chargeId %>" type="<%= checkType(data[i].type) %>" class="btn btn-default btn-table-hover detail" disabled>审核</button>
+				<% } else if (data[i].isShow == 2 && roleId != 4 && roleId != 6) { %>
+					<button chargeId="<%= data[i].chargeId %>" type="<%= checkType(data[i].type) %>" class="btn btn-default btn-table-hover detail">审核</button>
+				<% } %>  
+			</td>
+		</tr>
+	<% } %>
+</script>
+<div class="modal fade" id="imgModal" tabindex="-1" role="dialog" aria-labelledby="imgModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 1000px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <div id="img_show"><img src="" style="width: 100%;"></div>
+            </div>
+        </div>
+    </div>
+</div>

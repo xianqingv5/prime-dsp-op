@@ -1,0 +1,144 @@
+<ol class="breadcrumb">
+	<li><a href="./index.html?goto=creative&mold=list">素材管理</a></li>
+	<li class="active">素材审核</li>
+</ol>
+<form>
+	<div class="row mb20" id="campaignDetail">
+	</div>
+    
+    <div class="row mb20">
+        <div id="shield-main" class="shield col-md-8 col-md-offset-4">
+            
+            <a href="javascript:;" class="btn btn-primary" check-all>全选</a>
+            屏蔽：
+            <!-- js 补全 -->
+        </div> 
+    </div>  
+
+    <div class="ad-list" id="adList">
+        
+        
+    </div>
+    <div class="row" id="submits" >
+        <div class="col-md-12">
+            <!-- <button type="button" class="btn btn-primary actions submitAndGoNext">保存并继续</button> -->
+            <button permission="batchApproveAd" type="button" class="btn btn-primary actions submitAndExit">保存并退出</button>
+            <button type="button" class="btn btn-primary actions cancel">取消</button>
+        </div>
+    </div>
+
+
+</form>
+
+<script type="text/html" id="campaignDetailTmp">
+    <div class="col-md-6">
+        <div><strong>User ID:</strong> <%= data.accountId %></div>
+        <div class="odd"><strong>Campaign ID:</strong> <%= data.campaignId %></div>
+        <div><strong>Bid:</strong> $<%= data.bid %></div>
+        <div class="odd"><strong>状态:</strong> <%= campaignStatus(data.status) %></div>
+         <div><strong>Domain:</strong> <%= data.domain %></div>
+         <div class="odd"><strong>流量类型:</strong> <%= trafficType(data.targetingTrafficType) %></div>
+    </div>
+    <div class="col-md-6">
+        <div><strong>Email:</strong> <%= data.email %></div>
+        <div class="odd"><strong>Campaign Name:</strong> <%= data.campaignName %></div>
+        <div><strong>Campaign 类型:</strong> <%= linkType(data.linkType) %></div>
+        <div class="odd"><strong>日预算:</strong> $<%= data.budgetDay %></div>
+        <div><strong>总预算:</strong> $<%= data.budget %></div>
+        <div class="odd"><strong>媒体预算:</strong> $<%= data.budgetPerMediaDay %></div>
+    </div>
+    <div class="col-md-12">
+       
+        
+        <div><strong>URL:</strong> <%= data.clickThroughUrl %></div>
+        <div class="odd"><strong>Country WL:</strong> <%= data.countryWl.join(',') || 'All' %></div>
+    </div>
+    <div class="col-md-12">
+        <div style="border-top: 2px solid #ddd;">
+            <input type="checkbox" name="runOnAlert" id="runOnAlert" <%= !!data.runOnAlert ? "checked" : "" %> /> <label for="runOnAlert">忽略TMT报警</label>
+            <br />
+            <input type="checkbox" name="geoRunOnAlert" id="geoRunOnAlert" <%= !!data.geoRunOnAlert ? "checked" : "" %> /> <label for="geoRunOnAlert">忽略Geoedge报警</label>
+            <br />
+            <input type="checkbox" name="inmobiRunOnAlert" id="inmobiRunOnAlert" <%= !!data.inmobiRunOnAlert ? "checked" : "" %> /> <label for="inmobiRunOnAlert">忽略Inmobi报警</label>
+        </div>
+    </div>
+</script>
+
+
+<script type="text/html" id="adListTmp">
+<% adList.forEach(function(ad, i) { %>
+    <div class=" ad-container col-md-12" adId="<%= ad.adId %>" >
+        <span class="ad-index"><%= i + 1 %></span>
+        <div class="col-md-4" style="margin-top:30px; overflow:hidden;word-wrap: break-word; line-height: 24px">
+            <% if(campaign.linkType == 1) { %>
+                <img id="bannerUrl" src="<%= ad.bannerUrl %>" />
+            <% } else if(campaign.linkType == 2) { %>
+                <pre><%= ad.html %></pre>
+            <% } else if(campaign.linkType == 3) { %>
+                <% if(ad.format == 11) { %>
+                    <video width="200" controls src="<%= ad.videoUrl %>" />
+                <% } else { %>
+                    <pre><%= ad.videoUrl %></pre>
+                <% } %>
+            <% } else if(campaign.linkType == 4 || campaign.linkType == 5) { %>
+                POP: <%= campaign.clickThroughUrl %>
+            <% } else if(campaign.linkType == 6) { %>
+                <strong>Title:</strong> <%= ad.title %><br />
+                <strong>Brand:</strong> <%= ad.sponsored %><br />
+                <strong>Rating:</strong> <%= ad.rating %><br />
+                <strong>Description:</strong> <%= ad.description %><br />
+                <strong>CTA:</strong> <%= ad.cta %><br />
+                <strong>Icon:</strong> <img src="<%= ad.iconUrl %>" width="50" /><br />
+                <strong>Main image:</strong> <img src="<%= ad.mainImgUrl %>" width="300" /><br />
+            <% } %>
+            <br /><br />
+            <strong>Ad Id:</strong><%= ad.adId %><br />
+            <strong>Creative Id:</strong><%= ad.creativeId %><br />
+            <strong>Creative Name:</strong><%= ad.adName %><br />
+            <strong>Ad Status:</strong><%= adStatus(ad.status) %><br />
+            <strong>Approval Status:</strong><%=# handleStatus(ad.approvalStatus) %><br />
+            <strong>TMT Status:</strong><%=# tmt(ad.tmtStatus) %><br />
+            <strong>Geoedge Status:</strong><%=# tmt(ad.geoStatus) %><br />
+            <strong>Inmobi Status:</strong><%=# tmt(ad.inmobiStatus) %><br />
+            
+        </div>
+        <div class="col-md-8">
+            <div class="ad-tool-bar clear-fix">
+                <span>请选择审核通过的流量平台</span>
+
+                <button class="btn btn-default" apply-to-all>应用到所有</button>
+            </div>
+            <div class="mb20 platform-container">
+                <div class="tools">
+                    <!-- <label>
+                        <input type="checkbox" class="checkAll"> 全选 
+                    </label> -->
+                    <a href="javascript:;" class="btn btn-default" check-all-ad>全选</a>
+                    屏蔽：
+                    <!-- js 补全 -->
+                </div>
+                <% forin(campaign.classGroup, function(platforms, key) { %>
+                    <div class="list">
+                    <div class="tag"><%= key %>:</div>
+                    <% platforms.forEach(function(platform){ %>
+                        <% if(ad.approvedPlatform.indexOf(parseInt(platform.id)) >= 0) { %>
+                            <label><input type="checkbox" level="<%= platform.class %>" platformId="<%= platform.id %>" checked="checked" > <%= platform.name %></label>
+                        <% } else { %>
+                            <label><input type="checkbox" level="<%= platform.class %>" platformId="<%= platform.id %>"  > <%= platform.name %></label>
+                        <% } %>
+                    <% }) %>
+                    </div>
+                <% }) %>
+            </div>
+            <div>
+                <p class="ad-tool-bar clear-fix ">
+                    未审核通过的原因<!-- <button class="btn btn-default" apply-reason>应用到所有</button> -->
+                </p>
+                <textarea name="reason" class="form-control ad-reason" rows="3" placeholder="请填写具体原因"><%= ad.reason || 'automatic decision' %></textarea>
+            </div>
+            
+        </div>
+    </div>
+<% }) %>
+    
+</script>

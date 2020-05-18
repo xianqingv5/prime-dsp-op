@@ -1,0 +1,47 @@
+form{
+	width: 100%;
+}
+.input-group[class*="col-"] {
+    float: left;
+}
+.has-success .form-control {
+    border-color: #ccc;
+}
+.has-success .form-control-feedback{
+	color: #ccc;
+}
+.glyphicon-chevron-down,.glyphicon-chevron-up{
+	cursor: pointer;
+	position: absolute;
+}
+.sortable{
+	position: relative;
+}
+.glyphicon-chevron-down{
+    top: 15px;
+}
+.glyphicon-chevron-up{
+    top: 5px;
+}
+.disabled{
+	opacity: .35
+}
+#inputSuccess4{
+	width: 100px;
+}
+tr{
+    cursor: pointer;
+}
+.yeah-dtpicker{
+	height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+

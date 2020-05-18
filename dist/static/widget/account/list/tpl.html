@@ -1,0 +1,54 @@
+
+<form class="">
+
+		<div class="form-inline"> 
+            <div class="form-group">
+                <!-- <label class="form-label">查询</label> -->
+                <input placeholder="输入ID，回车查询" class="filter form-control" name="accountId"  data-key="accountId" type="text" /> 
+                <input placeholder="输入Email，回车查询" class="filter form-control" name="accountEmail"  data-key="accountEmail" type="text" /> 
+            </div>    
+            <a id="show-all" href="javascript:;" class="btn btn-default">重置</a>
+		</div>
+		<div class="hidden">
+	        <input class="hidden" name="limit" value="20">
+	    </div>
+
+</form>
+<div class="page"></div>
+<table id="account-list" class="table table-striped table-hover">
+	<thead>
+		<th>账户ID</th>
+		<th>账户邮箱</th>
+		<th>Skype</th>
+		<th>IO编码</th>
+		<th>财务ID</th>
+		<th class="check-authority">服务费比例</th>
+		<th>账户余额</th>
+		<th>创建时间</th>
+		<th>相关AM</th>
+		<th>状态</th>
+		<th>操作</th>
+	</thead>
+	<tbody id="list">
+	</tbody>
+</table>
+<div class="page"></div>
+<script type="text/html" id="accountList">
+	<% for (var i = 0, len = data.length; i < len; i++) {%>
+		<tr>
+			<td class="text-center"><%= data[i].accountId %></td>
+			<td><%= data[i].accountEmail %></td>
+			<td><%= data[i].skype %></td>
+			<td><%= data[i].contactPhoneNumber %></td>
+			<td><%= data[i].recommender %></td>
+			<td class="text-center check-authority"><%= data[i].commissionRatio %></td>
+			<td><%= Currency + ' ' + data[i].balance %></td>
+			<td><%= data[i].createdTime %></td>
+			<td><%= data[i].amName %></td>
+			<td><%= handleStatus(data[i].status) %></td>
+			<td>
+				<button permission="queryCustomerAccountInfo,queryOperationAccountList,approveCustomerAccount" accountId="<%= data[i].accountId %>" type="edit" class="btn btn-primary detail">修改</button>
+			    <button permission="queryCustomerAccountInfo,queryOperationAccountList" accountId="<%= data[i].accountId %>" type="view" class="btn btn-primary view">查看账户</button></td>
+		</tr>
+	<% } %>
+</script>

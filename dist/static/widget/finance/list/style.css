@@ -1,0 +1,40 @@
+.actions button + button{
+	margin-left: 0px;
+}
+.income{
+	color: #CC6600;
+}
+.payout{
+	color: #336699;
+}
+.income:before{
+    content: "+ "
+}
+.payout:before{
+    content: "- ";
+}
+.form-inline .control-label {
+    float: left;
+    line-height: 35px;
+}
+.table{
+    margin-bottom: 0;
+}
+table tr:hover{
+	cursor: pointer;
+}
+.yeah-dtpicker{
+	height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+#search{
+    margin-top: 10px;
+}

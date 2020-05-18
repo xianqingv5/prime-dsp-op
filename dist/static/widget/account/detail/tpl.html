@@ -1,0 +1,97 @@
+<ol class="breadcrumb">
+    <li><a href="./index.html?goto=account&mold=list">DSP管理</a></li>
+    <li class="active">编辑账户</li>
+</ol>
+<form>
+    <div class="form-group">
+        <label for="id">账户ID</label>
+        <input type="text" name="accountId" class="form-control" id="accountId" placeholder="" disabled>
+    </div>
+    <div class="form-group">
+        <label for="accountEmail">账户邮箱</label>
+        <input type="email" name="accountEmail" class="form-control" id="accountEmail" placeholder="" disabled>
+    </div>
+    <div class="form-group">
+        <label for="accountName">账户名称</label>
+        <input type="name" name="accountName" class="form-control" id="accountName" placeholder="" disabled>
+    </div>
+    <!-- 	<div class="form-group">
+	<label for="account_email">注册邮箱</label>
+	<input type="text" name="account_email" class="form-control" id="account_email" placeholder="" disabled>
+</div> -->
+    <!-- 联系电话改为IO编码 -->
+    <div class="form-group">
+        <label for="contactPhoneNumber">IO编码</label>
+        <input type="text" class="form-control" id="contactPhoneNumber" name="contactPhoneNumber" placeholder="">
+    </div>
+    <!-- 推荐人改为财务ID -->
+    <div class="form-group">
+        <label for="recommender">财务ID</label>
+        <input type="text" class="form-control" id="recommender" name="recommender" placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="qq">QQ</label>
+        <input type="text" class="form-control" id="qq" name="qq" placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="skype">Skype</label>
+        <input type="text" class="form-control" id="skype" name="skype" placeholder="">
+    </div>
+
+    <!-- <div class="form-group">
+		<label class="block" for="searchChoice">即时通讯</label>
+		<select id="searchChoice" class="form-control contact" disabled>
+			<option value="qq">QQ</option>
+			<option value="skype">Skype </option>
+      	</select>
+		<input type="text" class="form-control contact" id="" placeholder="" disabled>
+	</div> -->
+    <div class="form-group">
+        <label for="customerType">账户类型</label><br />
+        <label class="status">
+	  		<input type="radio" name="customerType" value="1" >公司
+		</label>
+        <label class="status">
+	  		<input type="radio" name="customerType" value="2" >个人
+		</label>
+    </div>
+    <div class="form-group">
+        <label for="companyName">公司名称</label>
+        <input type="text" class="form-control" id="companyName" name="companyName" placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="companyWebSite">公司地址</label>
+        <input type="text" class="form-control" id="companyWebSite" name="companyWebSite" placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="commissionRatio">服务费比例</label>
+        <input type="text" class="form-control" id="commissionRatio" name="commissionRatio" 　placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="pmName">相关AM</label>
+        <select id="amId" name="amId" class="form-control">
+      	</select>
+    </div>
+    <div class="form-group">
+        <label for="status">账户状态</label><br />
+        <label class="status">
+	  		<input type="radio" name="status" value="1"> 有效
+		</label>
+        <label class="status">
+	  		<input type="radio" name="status" value="2"> 无效
+		</label>
+    </div>
+
+    <div class="form-group">
+        <label for="htmlRight">HTML 权限</label><br />
+        <label class="htmlRight">
+            <input type="radio" name="htmlRight" value="1"> 开
+        </label>
+        <label class="htmlRight">
+            <input type="radio" name="htmlRight" value="0"> 关
+        </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary confirm">保存</button>
+    <button type="button" class="btn btn-primary cancel">取消</button>
+</form>
