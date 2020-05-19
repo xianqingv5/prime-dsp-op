@@ -81,7 +81,7 @@ function htmlminOptions () {
 
 
 //elaine copy all html,css&js(编译ES6) to dist(测试文件)
-gulp.task('extend-dist', function () {
+gulp.task('extend-dist', done => {
     gulp.src([temp_path + '/static/script/*.js', '!' +　temp_path + '/static/script/common.js'])
         .pipe(babel(babelConfig)) 
         .on('error', swallowError)
@@ -92,8 +92,6 @@ gulp.task('extend-dist', function () {
         .on('error', swallowError)
         .pipe(gulp.dest(dist_path + '/static/widget'))
 
-
-
     //修改测试环境api_host
     gulp.src([temp_path + '/static/script/common.js'])
         .pipe(babel(babelConfig)) 
@@ -101,7 +99,7 @@ gulp.task('extend-dist', function () {
         .pipe(replace('{prime_host}', dev_prime_host))
         .on('error', swallowError)
         .pipe(gulp.dest(dist_path + '/static/script/'))
-   
+
     gulp.src([temp_path + '/**/*.*', 
         '!' + temp_path + '/static/script/*.js', 
         '!' + temp_path + '/static/widget/**/*.js',
@@ -114,25 +112,34 @@ gulp.task('extend-dist', function () {
         .pipe(replace('<!-- hash -->', hash))
         .on('error', swallowError)
         .pipe(gulp.dest(dist_path))
+    done()
 })
 
 //elaine 打包到测试环境
-gulp.task('watch', ['extend-dist'], function () {
+// gulp.task('watch', ['extend-dist'], function () {
+//     console.log('watch');
+//     // gulp.watch(temp_path + '/**/*.*', ['extend-dist'])
+//     gulp.watch(watchSourceFiles, ['extend-dist'])
+// })
+gulp.task('watch', gulp.series('extend-dist', done => {
     console.log('watch');
     // gulp.watch(temp_path + '/**/*.*', ['extend-dist'])
-    gulp.watch(watchSourceFiles, ['extend-dist'])
-})
+    gulp.watch(watchSourceFiles, gulp.series('extend-dist', done => {
+        done()
+    }))
+    done()
+}))
 
 function swallowError (error) {
 
-  // If you want details of the error in the console
-  console.log(error.toString())
+    // If you want details of the error in the console
+    console.log(error.toString())
 
-  this.emit('end')
+    this.emit('end')
 }
 
 //copy & minify html
-gulp.task('minifyHtml', function() {
+gulp.task('minifyHtml', done => {
     console.log('minifyHtml');
     gulp.src([temp_path + '/static/widget/**/*.html'])
         .pipe(htmlmin(htmlminOptions()))
@@ -143,10 +150,11 @@ gulp.task('minifyHtml', function() {
         '!' + temp_path + '/index.html'])
         .pipe(htmlmin(htmlminOptions()))
         .pipe(gulp.dest(production_path))
+    done()
 })
 
 //copy & minify all custormer css
-gulp.task("cssMin", function() {
+gulp.task("cssMin", done => {
     console.log('cssMin');
 	gulp.src([temp_path + '/static/css/*.css'])
 		.pipe(minifyCss())
@@ -155,11 +163,11 @@ gulp.task("cssMin", function() {
     gulp.src([temp_path + '/static/widget/**/*.css'])
         .pipe(minifyCss())
         .pipe(gulp.dest(production_path + '/static/widget/'))
-	
+	done()
 })
 
 //copy & uglify all js
-gulp.task("uglifyJS", function() {
+gulp.task("uglifyJS", done => {
     console.log('uglifyJS');
 	gulp.src([temp_path + '/static/script/*.js','!' + temp_path + '/static/script/common.js'])
 		.pipe(babel(babelConfig))	
@@ -169,27 +177,29 @@ gulp.task("uglifyJS", function() {
     gulp.src(temp_path + '/static/widget/**/*.js')
 		.pipe(babel(babelConfig))	
 		.pipe(uglify())
-		.pipe(gulp.dest(production_path + '/static/widget'))
+        .pipe(gulp.dest(production_path + '/static/widget'))
+    done()
 })
 
 //copy other files
-gulp.task("copyOtherFiles", function() {
+gulp.task("copyOtherFiles", done =>{
     console.log('copyOtherFiles');
     gulp.src([
-    		temp_path + '/**/*.*', 
-    		'!' + temp_path + '/static/css/*.css', 
-    		'!' + temp_path + '/static/script/*.js',
-    		'!' + temp_path + '/static/widget/**/*.js',
-            '!' + temp_path + '/static/widget/**/*.css',
-    		'!' + temp_path + '/*.html',
-    		'!' + temp_path + '/static/widget/**/*.html'
-    	])
-        .pipe(gulp.dest(production_path))
+        temp_path + '/**/*.*', 
+        '!' + temp_path + '/static/css/*.css', 
+        '!' + temp_path + '/static/script/*.js',
+        '!' + temp_path + '/static/widget/**/*.js',
+        '!' + temp_path + '/static/widget/**/*.css',
+        '!' + temp_path + '/*.html',
+        '!' + temp_path + '/static/widget/**/*.html'
+    ])
+    .pipe(gulp.dest(production_path))
+    done()
 })
 
 
 //发布到线上，增加版本信息，修改api_host
-gulp.task("pro_env", function() {
+gulp.task("pro_env", done => {
     var hash = moment().format('YYYYMMDDHHmmss');
     gulp.src([temp_path + '/index.html'])
         .pipe(replace('<!-- hash -->', hash))
@@ -203,14 +213,23 @@ gulp.task("pro_env", function() {
         .pipe(babel(babelConfig)) 
         .pipe(uglify())
         .pipe(gulp.dest(production_path + '/static/script/'))
+    done()
 })
 
 //elaine 打包到正式环境
-gulp.task('extend-pro' , ['cssMin', 'uglifyJS', 'copyOtherFiles', 'minifyHtml'], function () {
-})
+// gulp.task('extend-pro' , ['cssMin', 'uglifyJS', 'copyOtherFiles', 'minifyHtml'], function () {
+// })
+gulp.task('extend-pro', gulp.series('cssMin', 'uglifyJS', 'copyOtherFiles', 'minifyHtml', done => {
+    done()
+}))
 
 //打包到正式环境
-gulp.task('default', ['extend-pro', 'pro_env'], function () {
+// gulp.task('default', ['extend-pro', 'pro_env'], function () {
+//     var hash = moment().format('YYYYMMDDHHmmss');
+// 	console.log('hash:' + hash);
+// })
+gulp.task('default', gulp.parallel('extend-pro', 'pro_env', done => {
     var hash = moment().format('YYYYMMDDHHmmss');
-	console.log('hash:' + hash);
-})
+    console.log('hash:' + hash);
+    done()
+}))

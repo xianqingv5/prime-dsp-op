@@ -6,7 +6,7 @@ __d('filter_reason_host', '@filter_reason_host@', 'http://dsp-filter-reason-5389
 __d('_location', '@Location@', '2') // 1国内,2国外(default)
 
 // 通过href判断本地或线上环境
-if(/(172\.20\.0\.39)|(dsp\.dev\.dy)/.test(location.href)) {
+if(/(172\.20\.0\.39)|(dsp\.dev\.dy)|(192\.168\.1\.108)/.test(location.href)) {
     window.api_host = "{api_host}";
     window.prime_host = "{prime_host}"
 }
