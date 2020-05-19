@@ -508,7 +508,8 @@ var common = {
 		},
 		loadCss: function loadCss(style) {
 			var path = common.pluginsTools.getPath(style);
-			$("<link>").attr({ rel: "stylesheet",
+			$("<link>").attr({
+				rel: "stylesheet",
 				type: "text/css",
 				href: path
 			}).appendTo("head");
