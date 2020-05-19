@@ -10,7 +10,7 @@ __d('prime_host', '@Domain_name@', 'http://prime.yeahmobi.com');
 __d('filter_reason_host', '@filter_reason_host@', 'http://dsp-filter-reason-538930803.us-east-1.elb.amazonaws.com');
 __d('_location', '@Location@', '2');
 if (/(172\.20\.0\.39)|(dsp\.dev\.dy)/.test(location.href)) {
-	window.api_host = "http://172.30.10.166:8081/dsp-op";
+	window.api_host = "http://192.168.1.185:8081/dsp-op";
 	window.prime_host = "http://dev.dsp.com:3000/static";
 }
 
