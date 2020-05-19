@@ -1,3 +1,4 @@
+'use strict';
 const gulp = require('gulp')
 //var extender = require('gulp-html-extend')  //Make it easy to extend, include and replace your html files
 const runSequence = require('gulp-run-sequence');
@@ -48,8 +49,6 @@ const dev_api_host = 'http://192.168.1.185:8081/dsp-op';
 
 // 本地投放系统地址
 const dev_prime_host = 'http://dev.dsp.com:3000/static';
-
-
 
 function htmlminOptions() {
 	var options = {
