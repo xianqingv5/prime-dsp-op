@@ -1,3 +1,4 @@
+'use strict';
 window.api_host = '/dsp-op'
 
 // 上线时运维会有脚本替换@xxx@的值
