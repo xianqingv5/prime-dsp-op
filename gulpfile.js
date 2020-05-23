@@ -40,6 +40,7 @@ const log = function () { console.log(arguments) }
 
 // 本地运营接口地址
 const dev_api_host = 'http://192.168.1.185:8081/dsp-op';
+// const dev_api_host = 'http://192.168.1.175:8088/dsp-op';
 // infi
 // const dev_api_host = 'http://172.30.88.166:8888';
 // adam
